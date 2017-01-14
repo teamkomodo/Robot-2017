@@ -1,5 +1,6 @@
 #include "WPILib.h"
 #include "definitions.h"
+#include <CameraServer.h>
 
 /**
  * This is a demo program showing the use of the RobotDrive class.
@@ -12,14 +13,18 @@
  * this system. Use IterativeRobot or Command-Based instead if you're new.
  */
 class Robot: public frc::SampleRobot {
-	RobotDrive myRobot { 0, 1 };  // robot drive system
+	RobotDrive myRobot;  // robot drive system
 	Joystick gamePad;//initialize gamepad
 	Talon liftMotor;//initialize lift motor
 
 public:
-
+	void RobotInit() {
+			CameraServer::GetInstance()->StartAutomaticCapture();
+		}
 	Robot() :
-		gamePad(GAMEPAD_INPUT_CHANNEL),liftMotor(WINCH_OUTPUT_CHANNEL)//set the channels for the gamepad and lift motor
+		gamePad(GAMEPAD_INPUT_CHANNEL),
+		liftMotor(WINCH_OUTPUT_CHANNEL),
+		myRobot(LEFT_DRIVE_OUTPUT_CHANNEL, RIGHT_DRIVE_OUTPUT_CHANNEL)//set the channels for the gamepad and lift motor
 	{
 		myRobot.SetExpiration(0.1);
 	}
