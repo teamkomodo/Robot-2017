@@ -1,0 +1,30 @@
+#ifndef SRC_DEFINITIONS_H_
+#define SRC_DEFINITIONS_H_
+
+
+// gamepad stuff
+#define GAMEPAD_INPUT_CHANNEL		1
+
+#define GAMEPAD_LEFT_STICK_X		0
+#define GAMEPAD_LEFT_STICK_Y		1
+
+#define GAMEPAD_LEFT_TRIGGER		2
+#define GAMEPAD_RIGHT_TRIGGER		3
+
+#define GAMEPAD_RIGHT_STICK_X		4
+#define GAMEPAD_RIGHT_STICK_Y		5
+
+#define GAMEPAD_LEFT_BUMPER			5
+#define GAMEPAD_RIGHT_BUMPER		6
+
+#define GAMEPAD_BUTTON_Y			4
+#define GAMEPAD_BUTTON_B			2
+#define GAMEPAD_BUTTON_A			1
+#define GAMEPAD_BUTTON_X			3
+#define WINCH_OUTPUT_CHANNEL		0
+
+
+
+
+
+#endif /* DEBUG_SRC_DEFINITIONS_H_ */
