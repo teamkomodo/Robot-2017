@@ -13,23 +13,24 @@
  */
 class Robot: public frc::SampleRobot {
 	RobotDrive myRobot { 0, 1 };  // robot drive system
-	Joystick gamePad;
+	Joystick gamePad;//initialize gamepad
+	Talon liftMotor;//initialize lift motor
 
 public:
 
 	Robot() :
-		gamePad(GAMEPAD_INPUT_CHANNEL)
-
+		gamePad(GAMEPAD_INPUT_CHANNEL),liftMotor(WINCH_OUTPUT_CHANNEL)//set the channels for the gamepad and lift motor
 	{
 		myRobot.SetExpiration(0.1);
 	}
 
 	/**
-	 * Runs the motor with arcade steering.
+	 * This loops while the robot is running
 	 */
 	void OperatorControl() {
 		while (IsOperatorControl() && IsEnabled()) {
-			myRobot.ArcadeDrive(gamePad.GetRawAxis(GAMEPAD_RIGHT_STICK_Y),-gamePad.GetRawAxis(GAMEPAD_RIGHT_STICK_X));
+			liftMotor.SetSpeed(gamePad.GetRawAxis(GAMEPAD_RIGHT_STICK_Y));//set the lift motor speed to the vertical position of the right joystick
+			myRobot.ArcadeDrive(gamePad.GetRawAxis(GAMEPAD_LEFT_STICK_Y),-gamePad.GetRawAxis(GAMEPAD_LEFT_STICK_X));//set the forward speed of the bot to the vertical position of the left joystick and the turn angle to the horizontal position
 			//myRobot.ArcadeDrive(stick); // drive with arcade style (use right stick)
 			frc::Wait(0.005);			// wait for a motor update time
 		}
