@@ -17,17 +17,18 @@ class Robot: public frc::IterativeRobot {
 	Joystick gamePad2;//initialize accessory gamepad
 	Joystick gamePad1;//initialize drive gamepad
 	Talon liftMotor;//initialize lift motor
-	int leftStickX = 0;
-	int leftStickY = 0;
-	int rightStickX = 0;
-	int rightStickY = 0;
+	int gamePad1X = 0;
+	int gamePad1Y = 0;
+	int gamePad2X = 0;
+	int gamePad2Y = 0;
 
 public:
 	/**
 	 * runs once at the beginning of the program
 	 */
 	Robot() :
-			gamePad(GAMEPAD_INPUT_CHANNEL),
+			gamePad1(GAMEPAD_1_INPUT_CHANNEL),
+			gamePad2(GAMEPAD_2_INPUT_CHANNEL),
 			liftMotor(WINCH_OUTPUT_CHANNEL),
 			myRobot(LEFT_DRIVE_OUTPUT_CHANNEL, RIGHT_DRIVE_OUTPUT_CHANNEL)//set the channels for the gamepad and lift motor
 	{
@@ -40,26 +41,16 @@ public:
 	}
 
 	void TeleopPeriodic() {
-		liftMotor.SetSpeed(rightStickX);
-		myRobot.ArcadeDrive(leftStickY, leftStickX);
+		liftMotor.SetSpeed(gamePad2Y);
+		myRobot.ArcadeDrive(gamePad1Y, gamePad1X);
 		frc::Wait(0.005);
-	/**
-	 * This loops while the robot is running
-	 */
-	void OperatorControl() {
-		while (IsOperatorControl() && IsEnabled()) {
-			liftMotor.SetSpeed(gamePad2.GetRawAxis(GAMEPAD_RIGHT_STICK_Y));//set the lift motor speed to the vertical position of the right joystick
-			myRobot.ArcadeDrive(gamePad.GetRawAxis(GAMEPAD_LEFT_STICK_Y),-gamePad.GetRawAxis(GAMEPAD_LEFT_STICK_X));//set the forward speed of the bot to the vertical position of the left joystick and the turn angle to the horizontal position
-			//myRobot.ArcadeDrive(stick); // drive with arcade style (use right stick)
-			frc::Wait(0.005);			// wait for a motor update time
-		}
 	}
 
 	void TeleopContinuous() {
-		leftStickX = gamePad.GetRawAxis(GAMEPAD_LEFT_STICK_X);
-		leftStickY = gamePad.GetRawAxis(GAMEPAD_LEFT_STICK_Y);
-		rightStickX = gamePad.GetRawAxis(GAMEPAD_RIGHT_STICK_X);
-		rightStickY = gamePad.GetRawAxis(GAMEPAD_RIGHT_STICK_Y);
+		gamePad1X = gamePad1.GetRawAxis(GAMEPAD_1_STICK_X);
+		gamePad1Y = gamePad1.GetRawAxis(GAMEPAD_1_STICK_Y);
+		gamePad2X = gamePad2.GetRawAxis(GAMEPAD_2_STICK_X);
+		gamePad2Y = gamePad2.GetRawAxis(GAMEPAD_2_STICK_Y);
 	}
 };
 
