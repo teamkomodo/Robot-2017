@@ -16,34 +16,38 @@ class Robot: public frc::IterativeRobot {
 	RobotDrive myRobot;  // robot drive system
 	Joystick gamePad;//initialize gamepad
 	Talon liftMotor;//initialize lift motor
-
+	int leftStickX = 0;
+	int leftStickY = 0;
+	int rightStickX = 0;
+	int rightStickY = 0;
 
 public:
 	/**
 	 * runs once at the beginning of the program
 	 */
+	Robot() :
+			gamePad(GAMEPAD_INPUT_CHANNEL),
+			liftMotor(WINCH_OUTPUT_CHANNEL),
+			myRobot(LEFT_DRIVE_OUTPUT_CHANNEL, RIGHT_DRIVE_OUTPUT_CHANNEL)//set the channels for the gamepad and lift motor
+	{
+			myRobot.SetExpiration(0.1);
+	}
+
 	void RobotInit() {
 		cs::UsbCamera camera = CameraServer::GetInstance()->StartAutomaticCapture();//Start camera streaming
 		camera.SetResolution(640, 480);//make sure the resolution is high enough *this has not been tested
-		}
-	Robot() :
-		gamePad(GAMEPAD_INPUT_CHANNEL),
-		liftMotor(WINCH_OUTPUT_CHANNEL),
-		myRobot(LEFT_DRIVE_OUTPUT_CHANNEL, RIGHT_DRIVE_OUTPUT_CHANNEL)//set the channels for the gamepad and lift motor
-	{
-		myRobot.SetExpiration(0.1);
 	}
 
-	/**
-	 * This loops while the robot is running
-	 */
-	void OperatorControl() {
-		while (IsOperatorControl() && IsEnabled()) {
-			liftMotor.SetSpeed(gamePad.GetRawAxis(GAMEPAD_RIGHT_STICK_Y));//set the lift motor speed to the vertical position of the right joystick
-			myRobot.ArcadeDrive(gamePad.GetRawAxis(GAMEPAD_LEFT_STICK_Y),-gamePad.GetRawAxis(GAMEPAD_LEFT_STICK_X));//set the forward speed of the bot to the vertical position of the left joystick and the turn angle to the horizontal position
-			//myRobot.ArcadeDrive(stick); // drive with arcade style (use right stick)
-			frc::Wait(0.005);			// wait for a motor update time
-		}
+	void TeleopPeriodic() {
+		liftMotor.SetSpeed(rightStickX);
+		myRobot.ArcadeDrive(leftStickY, leftStickX);
+	}
+
+	void TeleopContinuous() {
+		leftStickX = gamePad.GetRawAxis(GAMEPAD_LEFT_STICK_X);
+		leftStickY = gamePad.GetRawAxis(GAMEPAD_LEFT_STICK_Y);
+		leftStickX = gamePad.GetRawAxis(GAMEPAD_RIGHT_STICK_X);
+		leftStickY = gamePad.GetRawAxis(GAMEPAD_RIGHT_STICK_Y);
 	}
 };
 
