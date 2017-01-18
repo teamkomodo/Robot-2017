@@ -17,10 +17,8 @@ class Robot: public frc::IterativeRobot {
 	Joystick gamePad2;//initialize accessory gamepad
 	Joystick gamePad1;//initialize drive gamepad
 	Talon liftMotor;//initialize lift motor
-	int gamePad1X = 0;
-	int gamePad1Y = 0;
-	int gamePad2X = 0;
-	int gamePad2Y = 0;
+
+	class Drive;
 
 public:
 	/**
@@ -40,18 +38,22 @@ public:
 		camera.SetResolution(640, 480);//make sure the resolution is high enough *this has not been tested
 	}
 
-	void TeleopPeriodic() {
-		liftMotor.SetSpeed(gamePad2Y);
-		myRobot.ArcadeDrive(gamePad1Y, gamePad1X);
-		frc::Wait(0.005);
+	void TeleopInit() {
+		new TeleopControl();
 	}
 
-	void TeleopContinuous() {
-		gamePad1X = gamePad1.GetRawAxis(GAMEPAD_1_STICK_X);
-		gamePad1Y = gamePad1.GetRawAxis(GAMEPAD_1_STICK_Y);
-		gamePad2X = gamePad2.GetRawAxis(GAMEPAD_2_STICK_X);
-		gamePad2Y = gamePad2.GetRawAxis(GAMEPAD_2_STICK_Y);
-	}
+//	void TeleopPeriodic() {
+//		liftMotor.SetSpeed(gamePad2Y);
+//		myRobot.ArcadeDrive(gamePad1Y, gamePad1X);
+//		frc::Wait(0.005);
+//	}
+//
+//	void TeleopContinuous() {
+//		gamePad1X = gamePad1.GetRawAxis(GAMEPAD_1_STICK_X);
+//		gamePad1Y = gamePad1.GetRawAxis(GAMEPAD_1_STICK_Y);
+//		gamePad2X = gamePad2.GetRawAxis(GAMEPAD_2_STICK_X);
+//		gamePad2Y = gamePad2.GetRawAxis(GAMEPAD_2_STICK_Y);
+//	}
 };
 
 START_ROBOT_CLASS(Robot)
