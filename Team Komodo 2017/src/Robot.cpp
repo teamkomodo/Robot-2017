@@ -17,25 +17,32 @@ class Robot: public frc::IterativeRobot {
 	Joystick gamePad2;//initialize accessory gamepad
 	Joystick gamePad1;//initialize drive gamepad
 	Talon liftMotor;//initialize lift motor
-
+	int leftStickX = 0;
+	int leftStickY = 0;
+	int rightStickX = 0;
+	int rightStickY = 0;
 
 public:
 	/**
 	 * runs once at the beginning of the program
 	 */
+	Robot() :
+			gamePad(GAMEPAD_INPUT_CHANNEL),
+			liftMotor(WINCH_OUTPUT_CHANNEL),
+			myRobot(LEFT_DRIVE_OUTPUT_CHANNEL, RIGHT_DRIVE_OUTPUT_CHANNEL)//set the channels for the gamepad and lift motor
+	{
+			myRobot.SetExpiration(0.1);
+	}
+
 	void RobotInit() {
 		cs::UsbCamera camera = CameraServer::GetInstance()->StartAutomaticCapture();//Start camera streaming
 		camera.SetResolution(640, 480);//make sure the resolution is high enough *this has not been tested
-		}
-	Robot() :
-		gamePad2(GAMEPAD_2_INPUT_CHANNEL),
-		gamePad1()
-		liftMotor(WINCH_OUTPUT_CHANNEL),
-		myRobot(LEFT_DRIVE_OUTPUT_CHANNEL, RIGHT_DRIVE_OUTPUT_CHANNEL)//set the channels for the gamepad and lift motor
-	{
-		myRobot.SetExpiration(0.1);
 	}
 
+	void TeleopPeriodic() {
+		liftMotor.SetSpeed(rightStickX);
+		myRobot.ArcadeDrive(leftStickY, leftStickX);
+		frc::Wait(0.005);
 	/**
 	 * This loops while the robot is running
 	 */
@@ -46,6 +53,13 @@ public:
 			//myRobot.ArcadeDrive(stick); // drive with arcade style (use right stick)
 			frc::Wait(0.005);			// wait for a motor update time
 		}
+	}
+
+	void TeleopContinuous() {
+		leftStickX = gamePad.GetRawAxis(GAMEPAD_LEFT_STICK_X);
+		leftStickY = gamePad.GetRawAxis(GAMEPAD_LEFT_STICK_Y);
+		rightStickX = gamePad.GetRawAxis(GAMEPAD_RIGHT_STICK_X);
+		rightStickY = gamePad.GetRawAxis(GAMEPAD_RIGHT_STICK_Y);
 	}
 };
 
