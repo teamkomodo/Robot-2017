@@ -12,14 +12,19 @@
  * don't. Unless you know what you are doing, complex code will be much more difficult under
  * this system. Use IterativeRobot or Command-Based instead if you're new.
  */
-class Robot: public frc::SampleRobot {
+class Robot: public frc::IterativeRobot {
 	RobotDrive myRobot;  // robot drive system
 	Joystick gamePad;//initialize gamepad
 	Talon liftMotor;//initialize lift motor
 
+
 public:
+	/**
+	 * runs once at the beginning of the program
+	 */
 	void RobotInit() {
-			CameraServer::GetInstance()->StartAutomaticCapture();
+		cs::UsbCamera camera = CameraServer::GetInstance()->StartAutomaticCapture();//Start camera streaming
+		camera.SetResolution(640, 480);//make sure the resolution is high enough *this has not been tested
 		}
 	Robot() :
 		gamePad(GAMEPAD_INPUT_CHANNEL),
