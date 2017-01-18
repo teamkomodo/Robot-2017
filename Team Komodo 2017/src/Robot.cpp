@@ -41,13 +41,14 @@ public:
 	void TeleopPeriodic() {
 		liftMotor.SetSpeed(rightStickX);
 		myRobot.ArcadeDrive(leftStickY, leftStickX);
+		frc::Wait(0.005);
 	}
 
 	void TeleopContinuous() {
 		leftStickX = gamePad.GetRawAxis(GAMEPAD_LEFT_STICK_X);
 		leftStickY = gamePad.GetRawAxis(GAMEPAD_LEFT_STICK_Y);
-		leftStickX = gamePad.GetRawAxis(GAMEPAD_RIGHT_STICK_X);
-		leftStickY = gamePad.GetRawAxis(GAMEPAD_RIGHT_STICK_Y);
+		rightStickX = gamePad.GetRawAxis(GAMEPAD_RIGHT_STICK_X);
+		rightStickY = gamePad.GetRawAxis(GAMEPAD_RIGHT_STICK_Y);
 	}
 };
 
