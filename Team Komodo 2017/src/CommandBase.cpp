@@ -8,9 +8,18 @@
 #include <CommandBase.h>
 #include <Commands/Scheduler.h>
 
-std::unique_ptr<Drive> drive = std::make_unique<Drive>();
+#include "Subsystems/Drive.h"
+#include "Subsystems/RobotLifter.h"
 
-CommandBase::CommandBase(const std::string &name) :
-	frc::Command(name) {
 
+
+
+Drive *CommandBase::driveSubsystem = new Drive();
+RobotLifter *CommandBase::lifterSubsystem = new RobotLifter();
+
+std::unique_ptr<OI> CommandBase::oi = std::make_unique<OI>();
+
+
+CommandBase::CommandBase(const std::string &name) : frc::Command(name) {
+	// Literally worthless.
 }

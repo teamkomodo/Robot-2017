@@ -8,16 +8,19 @@
 #ifndef SRC_OI_H_
 #define SRC_OI_H_
 
-#include "WPILib.h";
+#include "WPILib.h"
 #include "definitions.h"
 
 class OI {
 private:
-	Joystick gamePad1 = new Joystick(GAMEPAD_1_INPUT_CHANNEL);
-	Joystick gamePad2 = new Joystick(GAMEPAD_2_INPUT_CHANNEL);
+	Joystick *gamePad1;
+	Joystick *gamePad2;
+
 public:
-	Joystick OI::getJoystick1();
-	Joystick OI::getJoystick2();
+	OI();
+
+	Joystick* getJoystick1();
+	Joystick* getJoystick2();
 };
 
 #endif /* SRC_OI_H_ */

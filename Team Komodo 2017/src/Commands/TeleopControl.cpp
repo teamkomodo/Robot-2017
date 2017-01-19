@@ -1,9 +1,12 @@
 #include "TeleopControl.h"
 
+
+
 TeleopControl::TeleopControl() {
 	// Use Requires() here to declare subsystem dependencies
-	// eg. Requires(Robot::chassis.get());
-	Requires(Drive);
+	Requires(CommandBase::driveSubsystem);
+
+	gamePad1 = oi->getJoystick1();
 }
 
 // Called just before this Command runs the first time
@@ -13,7 +16,8 @@ void TeleopControl::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void TeleopControl::Execute() {
-	drive->Arcade(oi->getJoystick1().GetRawAxis(GAMEPAD_1_STICK_Y), oi->getJoystick1().GetRawAxis(GAMEPAD_1_STICK_X))
+	driveSubsystem->Arcade(gamePad1->GetRawAxis(GAMEPAD_1_STICK_Y),
+						   gamePad1->GetRawAxis(GAMEPAD_1_STICK_X));
 }
 
 // Make this return true when this Command no longer needs to run execute()
@@ -23,7 +27,7 @@ bool TeleopControl::IsFinished() {
 
 // Called once after isFinished returns true
 void TeleopControl::End() {
-	drive->Stop();
+	driveSubsystem->Stop();
 
 }
 
