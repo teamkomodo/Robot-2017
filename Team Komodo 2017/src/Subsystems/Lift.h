@@ -7,15 +7,16 @@
 #include <Commands/Subsystem.h>
 
 
-class RobotLifter : public Subsystem {
+class Lift : public Subsystem {
 private:
 	Talon *liftMotor;
 
 public:
-	RobotLifter();
+	Lift();
 	void InitDefaultCommand() override;
 
 	void setSpeed(int speed);
+	void Stop();
 };
 
 

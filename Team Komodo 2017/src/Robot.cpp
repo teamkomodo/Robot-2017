@@ -2,12 +2,11 @@
 #include "definitions.h"
 
 #include <CameraServer.h>
+#include <Subsystems/Lift.h>
 
 #include "CommandBase.h"
 
 #include "Subsystems/Drive.h"
-#include "Subsystems/RobotLifter.h"
-
 #include "Commands/TeleopControl.h"
 #include "Commands/LiftWithGamepad.h"
 

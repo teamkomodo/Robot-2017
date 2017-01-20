@@ -5,7 +5,7 @@
 
 LiftWithGamepad::LiftWithGamepad() : CommandBase("LiftWithGamepad") {
 	// Use Requires() here to declare subsystem dependencies
-	Requires(CommandBase::lifterSubsystem);
+	Requires(CommandBase::lifterSubsystem.get());
 
 	gamePad = oi->getJoystick1();
 }

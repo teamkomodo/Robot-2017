@@ -2,9 +2,9 @@
 
 
 
-TeleopControl::TeleopControl() {
+TeleopControl::TeleopControl() : CommandBase("TeleopControl") {
 	// Use Requires() here to declare subsystem dependencies
-	Requires(CommandBase::driveSubsystem);
+	Requires(CommandBase::driveSubsystem.get());
 
 	gamePad1 = oi->getJoystick1();
 }
