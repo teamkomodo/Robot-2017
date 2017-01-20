@@ -12,7 +12,7 @@ Lift::Lift() : Subsystem("Lift") {
 void Lift::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
 	// The one that is called when the subsystem is idle.
-	//SetDefaultCommand(new LiftWithGamepad());
+	SetDefaultCommand(new LiftWithGamepad());
 }
 
 

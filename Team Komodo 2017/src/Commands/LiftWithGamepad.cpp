@@ -27,10 +27,7 @@ bool LiftWithGamepad::IsFinished() {
 
 // Called once after isFinished returns true
 void LiftWithGamepad::End() {
-	// We should probably make another function for that
-	// Not gonna do it now. It's already 3 AM
-	// I have school tomorrow too
-	lifterSubsystem->setSpeed(0);
+	lifterSubsystem->Stop();
 }
 
 // Called when another command which requires one or more of the same

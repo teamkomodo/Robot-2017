@@ -25,14 +25,6 @@
  */
 class Robot: public frc::IterativeRobot {
 public:
-	/**
-	 * runs once at the beginning of the program
-	 *
-	 * Do we really need this? Doesn't RobotInit do the exact same thing?
-	 */
-	Robot() {
-	}
-
 	void RobotInit();
 
 	void DisabledInit();
@@ -45,19 +37,6 @@ public:
 	void TeleopPeriodic();
 
 	void TestPeriodic();
-
-//	void TeleopPeriodic() {
-//		liftMotor.SetSpeed(gamePad2Y);
-//		myRobot.ArcadeDrive(gamePad1Y, gamePad1X);
-//		frc::Wait(0.005);
-//	}
-//
-//	void TeleopContinuous() {
-//		gamePad1X = gamePad1.GetRawAxis(GAMEPAD_1_STICK_X);
-//		gamePad1Y = gamePad1.GetRawAxis(GAMEPAD_1_STICK_Y);
-//		gamePad2X = gamePad2.GetRawAxis(GAMEPAD_2_STICK_X);
-//		gamePad2Y = gamePad2.GetRawAxis(GAMEPAD_2_STICK_Y);
-//	}
 
 private:
 	Command *teleopDriveCommand;
@@ -93,7 +72,7 @@ void Robot::DisabledInit() {
  * Updates the robot while disabled.
  */
 void Robot::DisabledPeriodic() {
-	Scheduler::GetInstance()->Run();
+	// Scheduler::GetInstance()->Run();
 }
 
 /**
@@ -109,16 +88,20 @@ void Robot::AutonomousInit() {
  * Updates the robot when in the autonomous period.
  */
 void Robot::AutonomousPeriodic() {
-	Scheduler::GetInstance()->Run();
+	// The Autonomous period should be a CommandGroup and not be utilizing the Scheduler
+	// Scheduler::GetInstance()->Run();
 }
 
 /**
  * Called every time the robot starts the teleop period.
  */
 void Robot::TeleopInit() {
+	//I'm pretty sure that the following isn't really needed because the Scheduler will start them
+	//But I'm not sure
+
 	// Gets the commands up and runnin'
-	teleopDriveCommand->Start();
-	liftGamepadControlCommand->Start();
+	// teleopDriveCommand->Start();
+	// liftGamepadControlCommand->Start();
 }
 
 /**

@@ -11,6 +11,7 @@ Drive::Drive() : Subsystem("DriveSubsystem") {
 void Drive::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
 	// SetDefaultCommand(new MySpecialCommand());
+	SetDefaultCommand(new TeleopControl());
 }
 
 
