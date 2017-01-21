@@ -19,7 +19,7 @@
  * Figured it was time to update that
  *
  * Author: Team Komodo 2017 Programming Team
- *         	 (Alex Jones,
+ *         	 (Alex Jones, Sean Kelly, Max D, D Ditty Chao)
  *
  * Add your name above
  */
