@@ -1,9 +1,11 @@
 #include <Subsystems/Lift.h>
 #include "../definitions.h"
 
-
-
 #include "WPILib.h"
+
+#include "../Commands/LiftWithGamepad.h"
+
+
 
 Lift::Lift() : Subsystem("Lift") {
 	liftMotor = new Talon(WINCH_OUTPUT_CHANNEL);

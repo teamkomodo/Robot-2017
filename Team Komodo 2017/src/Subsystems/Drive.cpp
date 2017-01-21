@@ -2,6 +2,8 @@
 #include "WPILib.h"
 #include "definitions.h"
 
+#include "../Commands/TeleopControl.h"
+
 
 
 Drive::Drive() : Subsystem("DriveSubsystem") {
