@@ -89,7 +89,10 @@ void Robot::AutonomousInit() {
  */
 void Robot::AutonomousPeriodic() {
 	// The Autonomous period should be a CommandGroup and not be utilizing the Scheduler
-	// Scheduler::GetInstance()->Run();
+
+	// I think we still need the scheduler to run the command group
+	// The group is just a way to run multiple commands with a single function call
+	Scheduler::GetInstance()->Run();
 }
 
 /**
@@ -99,9 +102,13 @@ void Robot::TeleopInit() {
 	//I'm pretty sure that the following isn't really needed because the Scheduler will start them
 	//But I'm not sure
 
+	// I think that the scheduler only runs commands. It needs to be told what commands to run
+	// If it just started commands automatically, we couldn't have commands that start conditionally
+	// For example, a command that lifts the lifter would always be on.
+
 	// Gets the commands up and runnin'
-	// teleopDriveCommand->Start();
-	// liftGamepadControlCommand->Start();
+	teleopDriveCommand->Start();
+	liftGamepadControlCommand->Start();
 }
 
 /**
