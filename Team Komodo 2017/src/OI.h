@@ -10,6 +10,10 @@
 
 
 
+// This is a really shitty system
+// There is a function in Joystick that gives us
+// the number of buttons, but too lazy to figure out
+// a way to use that, if it can be done at all
 #define NUMBER_OF_BUTTONS_JOYSTICK_1  100
 #define NUMBER_OF_BUTTONS_JOYSTICK_2  100
 

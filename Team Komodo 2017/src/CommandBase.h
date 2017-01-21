@@ -10,7 +10,6 @@
 
 
 
-#include <Subsystems/Lift.h>
 #include <memory>
 #include <string>
 
@@ -18,7 +17,10 @@
 // #include <Commands/Scheduler.h>
 
 #include "OI.h"
+
 #include "Subsystems/Drive.h"
+#include "Subsystems/Lift.h"
+#include "Subsystems/BallManipulator.h"
 
 class CommandBase : public frc::Command {
 public:
@@ -27,6 +29,7 @@ public:
 
 	static std::unique_ptr<Drive> driveSubsystem;
 	static std::unique_ptr<Lift> lifterSubsystem;
+	static std::unique_ptr<BallManipulator> ballManipulatorSubsystem;
 	static std::unique_ptr<OI> oi;
 
 };
