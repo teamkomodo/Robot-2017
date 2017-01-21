@@ -7,8 +7,10 @@
 #include "CommandBase.h"
 
 #include "Subsystems/Drive.h"
+
 #include "Commands/TeleopControl.h"
 #include "Commands/LiftWithGamepad.h"
+#include "Commands/ConveyorButtonControl.h"
 
 
 
@@ -39,8 +41,9 @@ public:
 	void TestPeriodic();
 
 private:
-	Command *teleopDriveCommand;
+	//Command *teleopDriveCommand;
 	Command *liftGamepadControlCommand;
+	//Command *conveyorControlCommand;
 };
 
 
@@ -52,8 +55,10 @@ private:
  * Called when the robot is first started up.
  */
 void Robot::RobotInit() {
-	teleopDriveCommand = new TeleopControl();
+	//teleopDriveCommand = new TeleopControl();
 	liftGamepadControlCommand = new LiftWithGamepad();
+	// Need the actual button
+	//conveyorControlCommand = new ConveyorButtonControl(0);
 
 	//Start camera streaming
 	cs::UsbCamera camera = CameraServer::GetInstance()->StartAutomaticCapture();
@@ -80,8 +85,9 @@ void Robot::DisabledPeriodic() {
  */
 void Robot::AutonomousInit() {
 	// Makes sure the commands stop running when autonomous starts
-	teleopDriveCommand->Cancel();
+	//teleopDriveCommand->Cancel();
 	liftGamepadControlCommand->Cancel();
+	//conveyorControlCommand->Cancel();
 }
 
 /**
@@ -107,8 +113,9 @@ void Robot::TeleopInit() {
 	// For example, a command that lifts the lifter would always be on.
 
 	// Gets the commands up and runnin'
-	teleopDriveCommand->Start();
+	//teleopDriveCommand->Start();
 	liftGamepadControlCommand->Start();
+	//conveyorControlCommand->Start();
 }
 
 /**
