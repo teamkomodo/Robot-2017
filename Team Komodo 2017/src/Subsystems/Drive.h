@@ -1,15 +1,20 @@
 #ifndef Drive_H
 #define Drive_H
 
+#include "Drive.h"
+#include "WPILib.h"
+#include "definitions.h"
 
+#include "../Commands/TeleopControl.h"
 
 #include <Commands/Subsystem.h>
 #include "WPILib.h"
 
+#include "../definitions.h"
 
 class Drive : public Subsystem {
 private:
-	RobotDrive *drive;
+	RobotDrive drive {LEFT_DRIVE_OUTPUT_CHANNEL, RIGHT_DRIVE_OUTPUT_CHANNEL};
 
 public:
 	Drive();

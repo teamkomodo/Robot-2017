@@ -9,7 +9,7 @@
 
 class BallManipulator : public Subsystem {
 private:
-	Talon *conveyorBeltMotor;
+	Talon conveyorBeltMotor {0};
 
 public:
 	BallManipulator();

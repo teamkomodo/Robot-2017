@@ -1,12 +1,13 @@
 #include "WPILib.h"
 #include "definitions.h"
 
-#include <CameraServer.h>
+// #include <CameraServer.h>
 #include <Subsystems/Lift.h>
 
 #include "CommandBase.h"
 
-#include "Subsystems/Drive.h"
+//#include "Subsystems/Drive.h"
+//#include "Subsystems/Lift.h"
 
 #include "Commands/TeleopControl.h"
 #include "Commands/LiftWithGamepad.h"
@@ -17,11 +18,11 @@
 /**
  * The code for Team Komodo's 2017 robot.
  *
- * Originally said some shit about SampleRobot
+ * Originally said some s**t about SampleRobot
  * Figured it was time to update that
  *
  * Author: Team Komodo 2017 Programming Team
- *         	 (Alex Jones, Sean Kelly, Max D, D Ditty Chao)
+ *         	 (Alex Jones, Sean Kelly, Max Davy, D Ditty Chao)
  *
  * Add your name above
  */
@@ -42,12 +43,9 @@ public:
 
 private:
 	//Command *teleopDriveCommand;
-	Command *liftGamepadControlCommand;
+	// Command *liftGamepadControlCommand;
 	//Command *conveyorControlCommand;
 };
-
-
-
 
 
 
@@ -56,14 +54,17 @@ private:
  */
 void Robot::RobotInit() {
 	//teleopDriveCommand = new TeleopControl();
-	liftGamepadControlCommand = new LiftWithGamepad();
+	//liftGamepadControlCommand = new LiftWithGamepad();
 	// Need the actual button
 	//conveyorControlCommand = new ConveyorButtonControl(0);
 
 	//Start camera streaming
-	cs::UsbCamera camera = CameraServer::GetInstance()->StartAutomaticCapture();
+	//CameraServer::GetInstance()->StartAutomaticCapture();
 	//make sure the resolution is high enough *this has not been tested
-	camera.SetResolution(640, 480);
+
+	// Scheduler::GetInstance()->RegisterSubsystem(CommandBase::driveSubsystem.get());
+	// Scheduler::GetInstance()->RegisterSubsystem(CommandBase::lifterSubsystem.get());
+
 }
 
 /**
@@ -86,7 +87,7 @@ void Robot::DisabledPeriodic() {
 void Robot::AutonomousInit() {
 	// Makes sure the commands stop running when autonomous starts
 	//teleopDriveCommand->Cancel();
-	liftGamepadControlCommand->Cancel();
+	//liftGamepadControlCommand->Cancel();
 	//conveyorControlCommand->Cancel();
 }
 
@@ -98,7 +99,7 @@ void Robot::AutonomousPeriodic() {
 
 	// I think we still need the scheduler to run the command group
 	// The group is just a way to run multiple commands with a single function call
-	Scheduler::GetInstance()->Run();
+	//Scheduler::GetInstance()->Run(); //that would make it the same as teleop
 }
 
 /**
@@ -114,7 +115,7 @@ void Robot::TeleopInit() {
 
 	// Gets the commands up and runnin'
 	//teleopDriveCommand->Start();
-	liftGamepadControlCommand->Start();
+	//liftGamepadControlCommand->Start();
 	//conveyorControlCommand->Start();
 }
 
@@ -122,16 +123,15 @@ void Robot::TeleopInit() {
  * Updates the robot when in the teleop period.
  */
 void Robot::TeleopPeriodic() {
-	Scheduler::GetInstance()->Run();
+	// Scheduler::GetInstance()->Run();
 }
 
 /**
  * Updates the robot when in the test period.
  */
 void Robot::TestPeriodic() {
-	LiveWindow::GetInstance()->Run();
+	// LiveWindow::GetInstance()->Run();
 }
-
 
 
 
