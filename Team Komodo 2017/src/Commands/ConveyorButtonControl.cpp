@@ -2,9 +2,10 @@
 
 ConveyorButtonControl::ConveyorButtonControl(int controlButtonID) {
 	// Use Requires() here to declare subsystem dependencies
-	Requires(CommandBase::ballManipulatorSubsystem.get());
+	ballManipulatorSubsystem = CommandBase::retrieveBallManipulatorSubsystem();
+	Requires(ballManipulatorSubsystem);
 
-	gamePad = oi->getJoystick1();
+	gamePad = CommandBase::retrieveOperatorInterface()->getJoystick1();
 	buttonID = controlButtonID;
 }
 

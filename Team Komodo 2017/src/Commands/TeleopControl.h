@@ -10,6 +10,7 @@
 class TeleopControl : public CommandBase {
 private:
 	Joystick *gamePad1;
+	Drive* driveSubsystem;
 
 public:
 	TeleopControl();

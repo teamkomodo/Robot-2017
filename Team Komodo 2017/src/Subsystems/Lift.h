@@ -6,10 +6,11 @@
 #include "WPILib.h"
 #include <Commands/Subsystem.h>
 
+#include "../Definitions.h"
 
 class Lift : public Subsystem {
 private:
-	Talon *liftMotor;
+	Talon liftMotor {WINCH_OUTPUT_CHANNEL};
 
 public:
 	Lift();

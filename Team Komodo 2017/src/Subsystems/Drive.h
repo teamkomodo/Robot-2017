@@ -5,11 +5,12 @@
 
 #include <Commands/Subsystem.h>
 #include "WPILib.h"
+#include "Definitions.h"
 
 
 class Drive : public Subsystem {
 private:
-	RobotDrive *drive;
+	RobotDrive drive {LEFT_DRIVE_OUTPUT_CHANNEL, RIGHT_DRIVE_OUTPUT_CHANNEL};
 
 public:
 	Drive();

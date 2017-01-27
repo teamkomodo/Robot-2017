@@ -10,6 +10,7 @@ class ConveyorButtonControl : public CommandBase {
 private:
 	Joystick *gamePad;
 	int buttonID;
+	BallManipulator* ballManipulatorSubsystem;
 
 public:
 	ConveyorButtonControl(int controlButtonID);

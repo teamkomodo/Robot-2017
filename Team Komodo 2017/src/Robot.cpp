@@ -60,10 +60,10 @@ void Robot::RobotInit() {
 	// Need the actual button
 	//conveyorControlCommand = new ConveyorButtonControl(0);
 
-	//Start camera streaming
-	cs::UsbCamera camera = CameraServer::GetInstance()->StartAutomaticCapture();
-	//make sure the resolution is high enough *this has not been tested
-	camera.SetResolution(640, 480);
+//	//Start camera streaming
+//	cs::UsbCamera camera = CameraServer::GetInstance()->StartAutomaticCapture();
+//	//make sure the resolution is high enough *this has not been tested
+//	camera.SetResolution(640, 480);
 }
 
 /**

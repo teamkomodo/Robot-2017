@@ -8,7 +8,6 @@
 
 
 Lift::Lift() : Subsystem("Lift") {
-	liftMotor = new Talon(WINCH_OUTPUT_CHANNEL);
 }
 
 void Lift::InitDefaultCommand() {
@@ -19,10 +18,10 @@ void Lift::InitDefaultCommand() {
 
 
 void Lift::setSpeed(int speed) {
-	liftMotor->SetSpeed(speed);
+	liftMotor.SetSpeed(speed);
 }
 
 
 void Lift::Stop() {
-	liftMotor->SetSpeed(0);
+	liftMotor.SetSpeed(0);
 }
