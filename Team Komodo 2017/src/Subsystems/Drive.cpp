@@ -1,5 +1,4 @@
 Drive::Drive() : Subsystem("DriveSubsystem") {
-	//drive = new RobotDrive(LEFT_DRIVE_OUTPUT_CHANNEL, RIGHT_DRIVE_OUTPUT_CHANNEL);
 }
 
 void Drive::InitDefaultCommand() {

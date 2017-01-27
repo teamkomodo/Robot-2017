@@ -4,8 +4,7 @@
 #include "WPILib.h"
 #include <Commands/Subsystem.h>
 
-#include "../Commands/LiftWithGamepad.h"
-#include "../definitions.h"
+#include "../Definitions.h"
 
 class Lift : public Subsystem {
 private:

@@ -9,6 +9,7 @@
 
 #include <Commands/Subsystem.h>
 #include "WPILib.h"
+#include "Definitions.h"
 
 #include "../definitions.h"
 

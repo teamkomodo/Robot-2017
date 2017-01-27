@@ -13,6 +13,7 @@
 class LiftWithGamepad : public CommandBase {
 private:
 	Joystick *gamePad;
+	Lift* lifterSubsystem;
 
 public:
 	LiftWithGamepad();

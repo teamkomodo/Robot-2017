@@ -12,6 +12,7 @@
 
 #include <memory>
 #include <string>
+#include <cstddef>
 
 // #include <Commands/Command.h>
 // #include <Commands/Scheduler.h>
@@ -23,14 +24,19 @@
 #include "Subsystems/BallManipulator.h"
 
 class CommandBase : public frc::Command {
+private:
+//	static std::unique_ptr<Drive> driveSubsystem;
+//	static std::unique_ptr<Lift> lifterSubsystem;
+//	static std::unique_ptr<BallManipulator> ballManipulatorSubsystem;
+//	static std::unique_ptr<OI> oi;
 public:
 	CommandBase(const std::string& name);
 	CommandBase() = default;
 
-	static std::unique_ptr<Drive> driveSubsystem;
-	static std::unique_ptr<Lift> lifterSubsystem;
-	static std::unique_ptr<BallManipulator> ballManipulatorSubsystem;
-	static std::unique_ptr<OI> oi;
+	static Drive* retrieveDriveSubsystem();
+	static Lift* retrieveLiftSubsystem();
+	static BallManipulator* retrieveBallManipulatorSubsystem();
+	static OI* retrieveOperatorInterface();
 
 };
 
