@@ -6,7 +6,7 @@
 #include "../CommandBase.h"
 #include "../definitions.h"
 
-
+class Drive;
 class TeleopControl : public CommandBase {
 private:
 	Joystick *gamePad1;

@@ -1,17 +1,11 @@
 #ifndef Drive_H
 #define Drive_H
 
-#include "Drive.h"
-#include "WPILib.h"
-#include "definitions.h"
-
-#include "../Commands/TeleopControl.h"
-
 #include <Commands/Subsystem.h>
 #include "WPILib.h"
-#include "Definitions.h"
-
 #include "../definitions.h"
+
+#include "../Commands/TeleopControl.h"
 
 class Drive : public Subsystem {
 private:

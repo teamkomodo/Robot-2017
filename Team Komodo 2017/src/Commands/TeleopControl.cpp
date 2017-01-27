@@ -1,7 +1,5 @@
 #include "TeleopControl.h"
 
-
-
 TeleopControl::TeleopControl() : CommandBase("TeleopControl") {
 	// Use Requires() here to declare subsystem dependencies
 	driveSubsystem = CommandBase::retrieveDriveSubsystem();
