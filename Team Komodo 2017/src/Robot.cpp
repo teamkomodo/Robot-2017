@@ -6,12 +6,6 @@
 
 #include "CommandBase.h"
 
-#include "Subsystems/Drive.h"
-
-#include "Commands/TeleopControl.h"
-#include "Commands/LiftWithGamepad.h"
-#include "Commands/ConveyorButtonControl.h"
-
 
 
 /**
@@ -38,9 +32,6 @@ public:
 	void TestPeriodic();
 
 private:
-	//Command *teleopDriveCommand;
-	Command *liftGamepadControlCommand;
-	//Command *conveyorControlCommand;
 };
 
 
@@ -48,11 +39,6 @@ private:
  * Called when the robot is first started up.
  */
 void Robot::RobotInit() {
-	//teleopDriveCommand = new TeleopControl();
-	liftGamepadControlCommand = new LiftWithGamepad();
-	// Need the actual button
-	//conveyorControlCommand = new ConveyorButtonControl(0);
-
 //	//Start camera streaming
 //	cs::UsbCamera camera = CameraServer::GetInstance()->StartAutomaticCapture();
 //	//make sure the resolution is high enough *this has not been tested
@@ -70,45 +56,27 @@ void Robot::DisabledInit() {
  * Updates the robot while disabled.
  */
 void Robot::DisabledPeriodic() {
-	// Scheduler::GetInstance()->Run();
 }
 
 /**
  * Called every time the robot starts the autonomous period.
+ * Previously, this would stop running commands but because the scheduler works
+ *    by running each command one time and then stopping(until the TeleopPeriodic()runs again (apprx 20 Hz or so)
+ *    Thus we don't need to stop the commands before autonomous.
  */
 void Robot::AutonomousInit() {
-	// Makes sure the commands stop running when autonomous starts
-	//teleopDriveCommand->Cancel();
-	liftGamepadControlCommand->Cancel();
-	//conveyorControlCommand->Cancel();
 }
 
 /**
  * Updates the robot when in the autonomous period.
  */
 void Robot::AutonomousPeriodic() {
-	// The Autonomous period should be a CommandGroup and not be utilizing the Scheduler
-
-	// I think we still need the scheduler to run the command group
-	// The group is just a way to run multiple commands with a single function call
-	Scheduler::GetInstance()->Run();
 }
 
 /**
  * Called every time the robot starts the teleop period.
  */
 void Robot::TeleopInit() {
-	//I'm pretty sure that the following isn't really needed because the Scheduler will start them
-	//But I'm not sure
-
-	// I think that the scheduler only runs commands. It needs to be told what commands to run
-	// If it just started commands automatically, we couldn't have commands that start conditionally
-	// For example, a command that lifts the lifter would always be on.
-
-	// Gets the commands up and runnin'
-	//teleopDriveCommand->Start();
-	liftGamepadControlCommand->Start();
-	//conveyorControlCommand->Start();
 }
 
 /**
@@ -124,9 +92,5 @@ void Robot::TeleopPeriodic() {
 void Robot::TestPeriodic() {
 	LiveWindow::GetInstance()->Run();
 }
-
-
-
-
 
 START_ROBOT_CLASS(Robot)
