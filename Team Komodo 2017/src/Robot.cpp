@@ -8,6 +8,9 @@
 
 #include "Commands/Autonomous.h"
 
+#include "Subsystems/Lift.h"
+#include "Subsystems/Drive.h"
+#include "Subsystems/BallManipulator.h"
 
 /**
  * The code for Team Komodo's 2017 robot.
@@ -46,6 +49,7 @@ void Robot::RobotInit() {
 //	cs::UsbCamera camera = CameraServer::GetInstance()->StartAutomaticCapture();
 //	make sure the resolution is high enough *this has not been tested
 //	camera.SetResolution(640, 480);
+	SmartDashboard::PutData(CommandBase::retrieveLiftSubsystem());
 }
 
 /**
@@ -76,6 +80,7 @@ void Robot::AutonomousInit() {
  * Updates the robot when in the autonomous period.
  */
 void Robot::AutonomousPeriodic() {
+	Scheduler::GetInstance()->Run();
 }
 
 /**
@@ -90,7 +95,7 @@ void Robot::TeleopInit() {
  * Updates the robot when in the teleop period.
  */
 void Robot::TeleopPeriodic() {
-	// Scheduler::GetInstance()->Run();
+	Scheduler::GetInstance()->Run();
 }
 
 /**

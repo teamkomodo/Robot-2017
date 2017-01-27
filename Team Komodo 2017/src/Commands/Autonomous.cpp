@@ -1,7 +1,8 @@
 #include "Autonomous.h"
 
 Autonomous::Autonomous() {
-	AddSequential(new WaitForDuration(5000));
+	AddSequential(new WaitForDuration(5)); //In seconds! (with millisecond granularity)
+	AddSequential(new LiftForDuration(2));
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
 	//      AddSequential(new Command2());

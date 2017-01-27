@@ -1,10 +1,9 @@
 #ifndef TeleopControl_H
 #define TeleopControl_H
 
-
-
-#include "../CommandBase.h"
 #include "../definitions.h"
+#include "CommandBase.h"
+#include "WPILib.h"
 
 class Drive;
 class TeleopControl : public CommandBase {

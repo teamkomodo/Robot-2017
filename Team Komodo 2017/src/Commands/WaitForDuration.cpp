@@ -1,6 +1,7 @@
 #include "WaitForDuration.h"
 #include "WPILIB.h"
 
+//Timeout (in seconds!) but with millisecond granularity
 WaitForDuration::WaitForDuration(double timeout) : TimedCommand(timeout) {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
@@ -13,11 +14,13 @@ void WaitForDuration::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void WaitForDuration::Execute() {
-	SmartDashboard::PutString("[STATUS]", "Waiting for autonomous. Nothing is currently running.");
+	std::cout << "Hello?" << std::endl;
+	SmartDashboard::PutString("AUTON_STATUS", "Waiting for autonomous. Nothing is currently running.");
 }
 
 // Called once after command times out
 void WaitForDuration::End() {
+	SmartDashboard::PutString("AUTON_STATUS", "Command finished.");
 
 }
 

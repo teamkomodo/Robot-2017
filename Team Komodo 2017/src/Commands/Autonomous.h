@@ -3,6 +3,7 @@
 
 #include <Commands/CommandGroup.h>
 #include "WaitForDuration.h"
+#include "LiftForDuration.h"
 
 class Autonomous : public CommandGroup {
 public:

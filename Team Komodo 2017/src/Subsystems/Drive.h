@@ -5,8 +5,7 @@
 #include "WPILib.h"
 #include "../definitions.h"
 
-#include "../Commands/TeleopControl.h"
-
+class TeleopControl;
 class Drive : public Subsystem {
 private:
 	RobotDrive drive {LEFT_DRIVE_OUTPUT_CHANNEL, RIGHT_DRIVE_OUTPUT_CHANNEL};
