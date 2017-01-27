@@ -17,11 +17,8 @@
 /**
  * The code for Team Komodo's 2017 robot.
  *
- * Originally said some shit about SampleRobot
- * Figured it was time to update that
- *
  * Author: Team Komodo 2017 Programming Team
- *         	 (Alex Jones, Sean Kelly, Max D, D Ditty Chao)
+ *         	 (Alex Jones, Sean Kelly, Max D, Daniel Chao)
  *
  * Add your name above
  */
@@ -45,10 +42,6 @@ private:
 	Command *liftGamepadControlCommand;
 	//Command *conveyorControlCommand;
 };
-
-
-
-
 
 
 /**
