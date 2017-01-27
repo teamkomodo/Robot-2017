@@ -6,6 +6,7 @@
 
 #include "CommandBase.h"
 
+#include "Commands/Autonomous.h"
 
 
 /**
@@ -32,16 +33,18 @@ public:
 	void TestPeriodic();
 
 private:
+	Autonomous autonomousGroup;
 };
 
 
 /**
  * Called when the robot is first started up.
+ * The camera would be initalized here it but it is currently not on the robot.
  */
 void Robot::RobotInit() {
-//	//Start camera streaming
+//	Start camera streaming
 //	cs::UsbCamera camera = CameraServer::GetInstance()->StartAutomaticCapture();
-//	//make sure the resolution is high enough *this has not been tested
+//	make sure the resolution is high enough *this has not been tested
 //	camera.SetResolution(640, 480);
 }
 
@@ -65,6 +68,8 @@ void Robot::DisabledPeriodic() {
  *    Thus we don't need to stop the commands before autonomous.
  */
 void Robot::AutonomousInit() {
+	autonomousGroup.Start();
+	std::cout << "Starting Autonomous" << std::endl;
 }
 
 /**
@@ -77,6 +82,8 @@ void Robot::AutonomousPeriodic() {
  * Called every time the robot starts the teleop period.
  */
 void Robot::TeleopInit() {
+	// You don't need to manually start the default command of a subsystem
+	// Experimentally confirmed 1/26/17 Max + Daniel
 }
 
 /**
