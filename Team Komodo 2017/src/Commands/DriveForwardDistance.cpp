@@ -2,9 +2,10 @@
 #include "OI.h"
 #include "EncoderConverter.h"
 
-DriveForwardDistance::DriveForwardDistance() {
+DriveForwardDistance::DriveForwardDistance(float inches) {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
+	distanceInches = inches;
 	driveSubsystem = CommandBase::retrieveDriveSubsystem();
 	Requires(CommandBase::retrieveLiftSubsystem());
 }
@@ -15,9 +16,9 @@ void DriveForwardDistance::Initialize() {
 }
 
 // Called repeatedly when this Command is scheduled to run
-void DriveForwardDistance::Execute(float inches) {
-	if (driveSubsystem->GetLeftEncoderValue() > EncoderConverter::InchesToEncoder(-inches)
-	  && driveSubsystem->GetRightEncoderValue() < EncoderConverter::InchesToEncoder(inches)){
+void DriveForwardDistance::Execute() {
+	if (driveSubsystem->GetLeftEncoderValue() > EncoderConverter::InchesToEncoder(-distanceInches)
+	  && driveSubsystem->GetRightEncoderValue() < EncoderConverter::InchesToEncoder(distanceInches)){
 			driveSubsystem->Arcade(1, 0);
 		} else {
 			isDone = true;

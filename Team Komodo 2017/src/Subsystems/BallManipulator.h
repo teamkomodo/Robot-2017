@@ -5,11 +5,12 @@
 
 #include <Commands/Subsystem.h>
 #include "WPILib.h"
+#include "definitions.h"
 
 
 class BallManipulator : public Subsystem {
 private:
-	Talon conveyorBeltMotor {0};
+	Talon conveyorBeltMotor {CONVEYOR_OUTPUT_CHANNEL};
 
 public:
 	BallManipulator();
