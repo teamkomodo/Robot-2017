@@ -7,10 +7,11 @@
 #include "CommandBase.h"
 
 #include "Commands/Autonomous.h"
+#include "Commands/TeleopControl.h"
 
 #include "Subsystems/Lift.h"
 #include "Subsystems/Drive.h"
-#include "Subsystems/BallManipulator.h"
+#include "Commands/TeleopControl.h"
 
 /**
  * The code for Team Komodo's 2017 robot.
@@ -34,6 +35,8 @@ public:
 	void TeleopPeriodic();
 
 	void TestPeriodic();
+
+	Command *teleopControl();
 
 private:
 	Autonomous autonomousGroup;
@@ -95,6 +98,9 @@ void Robot::TeleopInit() {
  * Updates the robot when in the teleop period.
  */
 void Robot::TeleopPeriodic() {
+	//v It doesn't work without this. I don't know why we don't have to do this with the lift. 01/27/17 Max
+	Scheduler::GetInstance()->AddCommand(new TeleopControl);
+
 	Scheduler::GetInstance()->Run();
 }
 

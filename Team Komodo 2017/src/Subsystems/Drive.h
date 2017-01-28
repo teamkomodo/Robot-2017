@@ -12,7 +12,7 @@ private:
 
 public:
 	Drive();
-	void InitDefaultCommand();
+	void InitDefaultCommand() override;
 
 	void Forward(int speed);
 	void Backward(int speed);

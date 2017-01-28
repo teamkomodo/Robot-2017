@@ -19,6 +19,7 @@ void LiftWithGamepad::Initialize() {
 void LiftWithGamepad::Execute() {
 	// Set the lift motor speed to the y-axis of the right joystick
 	lifterSubsystem->setSpeed(gamePad->GetRawAxis(GAMEPAD_1_STICK_Y));
+
 }
 
 // Make this return true when this Command no longer needs to run execute()

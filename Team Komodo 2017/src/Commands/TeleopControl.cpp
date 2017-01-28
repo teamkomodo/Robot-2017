@@ -1,7 +1,6 @@
 #include "TeleopControl.h"
 #include "../Subsystems/Drive.h"
 #include "../CommandBase.h"
-#include "OI.h"
 
 
 TeleopControl::TeleopControl() : CommandBase("TeleopControl") {
@@ -12,7 +11,7 @@ TeleopControl::TeleopControl() : CommandBase("TeleopControl") {
 	reverseButtonIndex = 5;
 	Requires(driveSubsystem);
 
-	gamePad1 = CommandBase::retrieveOperatorInterface()->getJoystick1();
+	gamePad = CommandBase::retrieveOperatorInterface()->getJoystick1();
 }
 
 // Called just before this Command runs the first time
@@ -35,7 +34,7 @@ void TeleopControl::Execute(){
 	driveSubsystem->Arcade(gamePad1->GetRawAxis(GAMEPAD_1_STICK_Y),
 						   gamePad1->GetRawAxis(GAMEPAD_1_STICK_X));
 						   */
-	if(gamePad1->GetRawButton(0)){
+	if(gamePad->GetRawButton(1)){
 		std::cout << "buttonDone = true" << std::endl;
 		SmartDashboard::PutString("Button State", "buttonDone = true");
 	}else{
