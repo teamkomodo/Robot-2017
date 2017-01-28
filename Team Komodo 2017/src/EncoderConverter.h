@@ -12,8 +12,8 @@ class EncoderConverter {
 public:
 	EncoderConverter();
 	virtual ~EncoderConverter();
-	int EncoderConverter::InchesToEncoder(float inches);
-	int EncoderConverter::DegreesToEncoder(float degrees);
+	static int EncoderConverter::InchesToEncoder(float inches);
+	static int EncoderConverter::DegreesToEncoder(float degrees);
 };
 
 #endif /* SRC_ENCODERCONVERTER_H_ */
