@@ -1,7 +1,7 @@
 #ifndef TeleopControl_H
 #define TeleopControl_H
 
-#define reverseButtonIndex	1//which joystick button is used to reverse the drive
+#define reverseButtonIndex	1
 
 #include "../definitions.h"
 #include "CommandBase.h"
@@ -14,7 +14,6 @@ private:
 	Drive* driveSubsystem;
 	bool driveReverse;
 	bool buttonPressed;
-	int reverseButtonIndex;
 
 public:
 	TeleopControl();

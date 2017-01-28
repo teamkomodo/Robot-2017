@@ -8,7 +8,7 @@ LiftWithGamepad::LiftWithGamepad() : CommandBase("LiftWithGamepad") {
 	// Use Requires() here to declare subsystem dependencies
 	Requires(lifterSubsystem);
 
-	gamePad = CommandBase::retrieveOperatorInterface()->getJoystick1();
+	gamePad = CommandBase::retrieveOperatorInterface()->getJoystick2();
 }
 
 // Called just before this Command runs the first time
