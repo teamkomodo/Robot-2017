@@ -9,7 +9,8 @@ class TeleopControl;
 class Drive : public Subsystem {
 private:
 	RobotDrive drive {LEFT_DRIVE_OUTPUT_CHANNEL, RIGHT_DRIVE_OUTPUT_CHANNEL};
-
+	Encoder *leftEncoder;
+	Encoder *rightEncoder;
 public:
 	Drive();
 	void InitDefaultCommand() override;
@@ -20,6 +21,12 @@ public:
 	void Right(double amt);
 	void Arcade(int y, int x);
 	void Stop();
+	void ResetLeftEncoder();
+	void ResetRightEncoder();
+	int GetLeftEncoderValue();
+	int GetRightEncoderValue();
+	Encoder* GetLeftEncoder();
+	Encoder* GetRightEncoder();
 };
 
 

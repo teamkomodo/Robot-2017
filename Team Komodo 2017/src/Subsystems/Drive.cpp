@@ -2,6 +2,8 @@
 #include "../Commands/TeleopControl.h"
 
 Drive::Drive() : Subsystem("DriveSubsystem") {
+	rightEncoder = new Encoder(RIGHT_ENCODER_CHANNEL_A, RIGHT_ENCODER_CHANNEL_B);
+	leftEncoder = new Encoder(RIGHT_ENCODER_CHANNEL_A, RIGHT_ENCODER_CHANNEL_B);
 }
 
 void Drive::InitDefaultCommand() {
@@ -28,6 +30,7 @@ void Drive::Left(double amt) {
 
 void Drive::Right(double amt) {
 	drive.ArcadeDrive(0, amt);
+
 }
 
 void Drive::Arcade(int speed, int turn) {
@@ -36,4 +39,28 @@ void Drive::Arcade(int speed, int turn) {
 
 void Drive::Stop() {
 	drive.ArcadeDrive(0, 0.0);
+}
+
+void Drive::ResetLeftEncoder(){
+	leftEncoder->Reset();
+}
+
+void Drive::ResetRightEncoder(){
+	rightEncoder->Reset();
+}
+
+int Drive::GetLeftEncoderValue(){
+	return leftEncoder->GetRaw();
+}
+
+int Drive::GetRightEncoderValue(){
+	return rightEncoder->GetRaw();
+}
+
+Encoder* Drive::GetLeftEncoder(){
+	return leftEncoder;
+}
+
+Encoder* Drive::GetRightEncoder(){
+	return rightEncoder;
 }
