@@ -1,6 +1,7 @@
 #ifndef TeleopControl_H
 #define TeleopControl_H
 
+
 #include "../definitions.h"
 #include "CommandBase.h"
 #include "WPILib.h"
@@ -10,6 +11,9 @@ class TeleopControl : public CommandBase {
 private:
 	Joystick *gamePad1;
 	Drive* driveSubsystem;
+	bool driveReverse;
+	bool buttonDone;
+	int reverseButtonIndex;
 
 public:
 	TeleopControl();

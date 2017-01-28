@@ -16,7 +16,7 @@
  * The code for Team Komodo's 2017 robot.
  *
  * Author: Team Komodo 2017 Programming Team
- *         	 (Alex Jones, Sean Kelly, Max D, Daniel Chao)
+ *         	 (Alex Jones, Sean Kelly, Max Davy, Daniel Chao)
  *
  * Add your name above
  */
