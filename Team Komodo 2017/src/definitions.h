@@ -22,6 +22,9 @@
 
 #define RIGHT_ENCODER_CHANNEL_A		2
 #define RIGHT_ENCODER_CHANNEL_B		3
+//other
+#define ENCODER_VALUES_PER_INCH		56.7
+#define ROBOT_WIDTH					23
 
 
 
