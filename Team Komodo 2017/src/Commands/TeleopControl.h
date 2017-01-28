@@ -12,7 +12,7 @@ private:
 	Joystick *gamePad;
 	Drive* driveSubsystem;
 	bool driveReverse;
-	bool buttonDone;
+	bool buttonPressed;
 	int reverseButtonIndex;
 
 public:

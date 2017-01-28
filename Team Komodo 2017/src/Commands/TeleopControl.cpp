@@ -7,8 +7,8 @@ TeleopControl::TeleopControl() : CommandBase("TeleopControl") {
 	// Use Requires() here to declare subsystem dependencies
 	driveSubsystem = CommandBase::retrieveDriveSubsystem();
 	driveReverse = false;
-	buttonDone = true;
-	reverseButtonIndex = 5;
+	buttonPressed = false;
+	reverseButtonIndex = 1;
 	Requires(driveSubsystem);
 
 	gamePad = CommandBase::retrieveOperatorInterface()->getJoystick1();
@@ -21,26 +21,27 @@ void TeleopControl::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void TeleopControl::Execute(){
-	/*if(gamePad1->GetRawButton(reverseButtonIndex) == true && buttonDone == false){
-		buttonDone = true;
-		std::cout << "buttonDone = true;" << std::endl;
-		SmartDashboard::PutString("Button State", "buttonDone = true;");
+	//code to prevent repeated button presses
+	if(gamePad->GetRawButton(reverseButtonIndex)== true && buttonPressed == false){
+		buttonPressed = true;
+
+		SmartDashboard::PutBoolean("driveReverse", driveReverse);
+	} else if(gamePad->GetRawButton(reverseButtonIndex) == false && buttonPressed == true){
+		buttonPressed = false;
 	}
-	else if (gamePad1->GetRawButton(reverseButtonIndex) == false && buttonDone == true){
-		buttonDone = false;
-		std::cout << "buttonDone = false;" << std::endl;
-		SmartDashboard::PutString("Button State", "buttonDone = false;");
+	if(buttonPressed){
+		driveReverse = !driveReverse;
 	}
-	driveSubsystem->Arcade(gamePad1->GetRawAxis(GAMEPAD_1_STICK_Y),
-						   gamePad1->GetRawAxis(GAMEPAD_1_STICK_X));
-						   */
+	driveSubsystem->Arcade(gamePad->GetRawAxis(GAMEPAD_1_STICK_Y),
+							   gamePad->GetRawAxis(GAMEPAD_1_STICK_X));
+	/*
 	if(gamePad->GetRawButton(1)){
 		std::cout << "buttonDone = true" << std::endl;
 		SmartDashboard::PutString("Button State", "buttonDone = true");
 	}else{
 		std::cout << "buttonDone = false;" << std::endl;
 		SmartDashboard::PutString("Button State", "buttonDone = false;");
-	}
+	}*/
 }
 
 
