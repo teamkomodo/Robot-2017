@@ -16,11 +16,11 @@ void DriveForwardDistance::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void DriveForwardDistance::Execute(float inches) {
-	if (driveSubsystem->GetRightEncoderValue() > EncoderConverter::InchesToEncoder(-inches)
+	if (driveSubsystem->GetLeftEncoderValue() > EncoderConverter::InchesToEncoder(-inches)
 	  && driveSubsystem->GetRightEncoderValue() < EncoderConverter::InchesToEncoder(inches)){
-			driveSubsystem->Arcade(1, 0); // move forward for variable amount
-		} else { // when we go the distance
-			isDone = true; //Next step
+			driveSubsystem->Arcade(1, 0);
+		} else {
+			isDone = true;
 			driveSubsystem->ResetRightEncoder();
 			driveSubsystem->ResetLeftEncoder();
 			driveSubsystem->Arcade(0,0);
