@@ -98,7 +98,10 @@ void Robot::TeleopInit() {
  * Updates the robot when in the teleop period.
  */
 void Robot::TeleopPeriodic() {
-	//v It doesn't work without this. I don't know why we don't have to do this with the lift. 01/27/17 Max
+	// For some reason I had to explicitly add TeleopControl to the Scheduler.
+	//even though it is the default command of the Drive subsystem
+	//and the default command of the lift subsystem, LiftWithGamepad, was getting
+	//run without me having to add it. 01/27/17 Max
 	Scheduler::GetInstance()->AddCommand(new TeleopControl);
 
 	Scheduler::GetInstance()->Run();
