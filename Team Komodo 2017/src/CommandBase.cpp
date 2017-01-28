@@ -26,6 +26,14 @@ Drive* CommandBase::retrieveDriveSubsystem() {
 	return driveSubsystem.get();
 }
 
+Hopper* CommandBase::retrieveHopperSubsystem() {
+	static std::unique_ptr<Drive> hopperSubsystem;
+	if(!hopperSubsystem) {
+		hopperSubsystem = std::make_unique<Hopper>();
+	}
+	return hopperSubsystem.get();
+}
+
 Lift* CommandBase::retrieveLiftSubsystem() {
 	static std::unique_ptr<Lift> liftSubsystem;
 	if(!liftSubsystem) {

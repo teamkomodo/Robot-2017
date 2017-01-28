@@ -103,7 +103,7 @@ void Robot::TeleopPeriodic() {
 	//and the default command of the lift subsystem, LiftWithGamepad, was getting
 	//run without me having to add it. 01/27/17 Max
 	Scheduler::GetInstance()->AddCommand(new TeleopControl);
-
+	Scheduler::GetInstance()->AddCommand(new HopperWithGamepad);
 	Scheduler::GetInstance()->Run();
 }
 

@@ -37,6 +37,7 @@ public:
 	static Lift* retrieveLiftSubsystem();
 	static BallManipulator* retrieveBallManipulatorSubsystem();
 	static OI* retrieveOperatorInterface();
+	static Hopper* retrieveHopperSubsystem();
 
 };
 
