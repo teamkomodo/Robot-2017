@@ -1,3 +1,7 @@
+/*
+ * Created 01/28/17 by Max Davy
+ * Portions of code courtesy FRC Team 6012 STEAMRollers
+ */
 #include "DriveForwardDistance.h"
 #include "OI.h"
 #include "EncoderConverter.h"

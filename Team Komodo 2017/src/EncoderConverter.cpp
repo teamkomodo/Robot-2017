@@ -1,8 +1,8 @@
 /*
- * EncoderConverter.cpp
+ * Functions to convert inches of robot travel to encoder values
  *
- *  Created on: Jan 28, 2017
- *      Author: Max Davy
+ *  Created 01/28/17 by Max Davy
+ *  Portions of code courtesy FRC Team 6012 STEAMRollers
  */
 
 #include <EncoderConverter.h>

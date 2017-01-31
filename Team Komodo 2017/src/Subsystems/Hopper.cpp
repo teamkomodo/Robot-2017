@@ -1,3 +1,6 @@
+/*
+ * Created 01/28/17 by Max Davy
+ */
 #include "Hopper.h"
 #include "../definitions.h"
 #include "WPILib.h"
