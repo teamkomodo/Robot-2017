@@ -1,5 +1,5 @@
 #include "HopperWithGamepad.h"
-#include "Hopper.h"
+#include "../Subsystems/Hopper.h"
 #include "definitions.h"
 
 HopperWithGamepad::HopperWithGamepad() {

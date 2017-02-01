@@ -22,6 +22,7 @@
 #include "Subsystems/Drive.h"
 #include "Subsystems/Lift.h"
 #include "Subsystems/BallManipulator.h"
+#include "Subsystems/Hopper.h"
 
 class CommandBase : public frc::Command {
 private:

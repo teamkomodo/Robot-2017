@@ -12,6 +12,7 @@
 #include "Subsystems/Lift.h"
 #include "Subsystems/Drive.h"
 #include "Commands/TeleopControl.h"
+#include "Commands/HopperWithGamepad.h";
 
 /**
  * The code for Team Komodo's 2017 robot.
