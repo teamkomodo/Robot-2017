@@ -11,7 +11,7 @@ DriveForwardDistance::DriveForwardDistance(float inches) {
 	// eg. Requires(Robot::chassis.get());
 	distanceInches = inches;
 	driveSubsystem = CommandBase::retrieveDriveSubsystem();
-	Requires(CommandBase::retrieveLiftSubsystem());
+	Requires(CommandBase::retrieveDriveSubsystem());
 }
 
 // Called just before this Command runs the first time
