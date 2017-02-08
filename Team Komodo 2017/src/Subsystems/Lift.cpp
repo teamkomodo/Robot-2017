@@ -18,3 +18,7 @@ void Lift::setSpeed(int speed) {
 void Lift::Stop() {
 	liftMotor.SetSpeed(0);
 }
+
+bool Lift::isLimitSwitchPressed(){
+	return limitSwitch.Get();
+}

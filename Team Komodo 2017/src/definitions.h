@@ -26,6 +26,8 @@
 
 #define CONVEYOR_ENCODER_CHANNEL_A	4
 #define CONVEYOR_ENCODER_CHANNEL_B	5
+
+#define LIFT_LIMIT_SWITCH_CHANNEL	6
 //other
 #define ENCODER_VALUES_PER_INCH		56.7//based on 4 inch wheels
 #define ROBOT_WIDTH					23//confirmed

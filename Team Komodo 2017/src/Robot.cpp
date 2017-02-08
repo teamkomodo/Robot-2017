@@ -46,11 +46,12 @@ private:
 
 /**
  * Called when the robot is first started up.
- * The camera would be initalized here it but it is currently not on the robot.
+ * The camera would be initialized here it but it is currently not on the robot.
+ * I'm going to add the camera to see if it will cause the code to fail
  */
 void Robot::RobotInit() {
 //	Start camera streaming
-//	cs::UsbCamera camera = CameraServer::GetInstance()->StartAutomaticCapture();
+	CameraServer::GetInstance()->StartAutomaticCapture();
 //	make sure the resolution is high enough *this has not been tested
 //	camera.SetResolution(640, 480);
 	SmartDashboard::PutData(CommandBase::retrieveLiftSubsystem());
@@ -59,6 +60,7 @@ void Robot::RobotInit() {
 /**
  * Called every time the robot starts the autonomous period.
  */
+
 void Robot::DisabledInit() {
 
 }
@@ -93,6 +95,7 @@ void Robot::AutonomousPeriodic() {
 void Robot::TeleopInit() {
 	// You don't need to manually start the default command of a subsystem
 	// Experimentally confirmed 1/26/17 Max + Daniel
+	//(however, see note in TeleopPeriodic)
 }
 
 /**
