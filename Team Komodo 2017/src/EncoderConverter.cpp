@@ -9,11 +9,6 @@
 #include <math.h>
 #include "definitions.h"
 
-EncoderConverter::EncoderConverter() {
-	// TODO Auto-generated constructor stub
-
-}
-
 int EncoderConverter::InchesToEncoder(float inches) {
 	int EncoderUnits = 0;
 	EncoderUnits = inches * ENCODER_VALUES_PER_INCH;//56.7 assuming 4 inch high-traction wheels
@@ -26,7 +21,4 @@ int EncoderConverter::DegreesToEncoder(float degrees) {
 	return EncoderValues;
 }
 
-EncoderConverter::~EncoderConverter() {
-	// TODO Auto-generated destructor stub
-}
 
