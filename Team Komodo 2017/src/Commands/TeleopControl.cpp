@@ -29,7 +29,9 @@ void TeleopControl::Execute(){
 		buttonPressed = false;
 	}*/
 	if(gamePad->GetRawButton(reverseButtonIndex)){//if the button is pressed (currently the trigger on the driver joystick)
-		driveReverse = !driveReverse;//reverse the reverse variable
+		driveReverse = true;
+	}else{
+		driveReverse = false;
 	}
 	if(driveReverse){//if we're in reverse mode
 		driveSubsystem->Arcade(-gamePad->GetRawAxis(GAMEPAD_1_STICK_Y),
