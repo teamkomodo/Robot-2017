@@ -37,8 +37,6 @@ public:
 
 	void TestPeriodic();
 
-	Command *teleopControl();
-
 private:
 	Autonomous autonomousGroup;
 };

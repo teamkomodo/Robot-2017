@@ -17,7 +17,7 @@ int EncoderConverter::InchesToEncoder(float inches) {
 
 int EncoderConverter::DegreesToEncoder(float degrees) {
 	int EncoderValues = 0;
-	EncoderValues = EncoderConverter::InchesToEncoder((degrees / 360)* M_PI * 17.625);
+	EncoderValues = EncoderConverter::InchesToEncoder((degrees / 360)* M_PI * ROBOT_WIDTH_INCHES);
 	return EncoderValues;
 }
 

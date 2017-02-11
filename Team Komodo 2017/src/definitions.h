@@ -30,7 +30,7 @@
 #define LIFT_LIMIT_SWITCH_CHANNEL	6
 //other
 #define ENCODER_VALUES_PER_INCH		56.7//based on 4 inch wheels
-#define ROBOT_WIDTH					23//confirmed
+#define ROBOT_WIDTH_INCHES			23//confirmed
 #define HOPPER_MAXIMUM_ENCODER		200//wild guess
 
 
