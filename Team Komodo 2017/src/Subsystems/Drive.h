@@ -15,11 +15,11 @@ public:
 	Drive();
 	void InitDefaultCommand() override;
 
-	void Forward(int speed);
-	void Backward(int speed);
+	void Forward(double speed);
+	void Backward(double speed);
 	void Left(double amt);
 	void Right(double amt);
-	void Arcade(int y, int x);
+	void Arcade(double y, double x);
 	void Stop();
 	void ResetLeftEncoder();
 	void ResetRightEncoder();

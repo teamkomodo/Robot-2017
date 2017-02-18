@@ -93,7 +93,9 @@ void Robot::AutonomousPeriodic() {
 void Robot::TeleopInit() {
 	// You don't need to manually start the default command of a subsystem
 	// Experimentally confirmed 1/26/17 Max + Daniel
-	//(however, see note in TeleopPeriodic)
+	// apparently you actually do 02/18/17 Max
+	Scheduler::GetInstance()->AddCommand(new TeleopControl);
+	Scheduler::GetInstance()->AddCommand(new HopperWithGamepad);
 }
 
 /**
@@ -104,8 +106,8 @@ void Robot::TeleopPeriodic() {
 	//even though it is the default command of the Drive subsystem
 	//and the default command of the lift subsystem, LiftWithGamepad, was getting
 	//run without me having to add it. 01/27/17 Max
-	Scheduler::GetInstance()->AddCommand(new TeleopControl);
-	Scheduler::GetInstance()->AddCommand(new HopperWithGamepad);
+	//cancel that. It caused big problems 02/18/17 Max
+
 	Scheduler::GetInstance()->Run();
 }
 

@@ -1,5 +1,6 @@
 #include "Drive.h"
 #include "../Commands/TeleopControl.h"
+#include <string>
 
 Drive::Drive() : Subsystem("DriveSubsystem") {
 	rightEncoder = new Encoder(RIGHT_ENCODER_CHANNEL_A, RIGHT_ENCODER_CHANNEL_B);
@@ -16,11 +17,11 @@ void Drive::InitDefaultCommand() {
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
 
-void Drive::Forward(int speed) {
+void Drive::Forward(double speed) {
 	drive.ArcadeDrive(speed, 0);
 }
 
-void Drive::Backward(int speed) {
+void Drive::Backward(double speed) {
 	drive.ArcadeDrive(-speed, 0);
 }
 
@@ -30,11 +31,11 @@ void Drive::Left(double amt) {
 
 void Drive::Right(double amt) {
 	drive.ArcadeDrive(0, amt);
-
 }
 
-void Drive::Arcade(int speed, int turn) {
+void Drive::Arcade(double speed, double turn) {
 	drive.ArcadeDrive(speed, turn);
+	std::cout << "Speed:"+std::to_string(speed) + " Turn:"+std::to_string(turn) << std::endl;
 }
 
 void Drive::Stop() {

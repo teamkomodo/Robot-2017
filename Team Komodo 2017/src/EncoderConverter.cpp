@@ -11,7 +11,7 @@
 
 int EncoderConverter::InchesToEncoder(float inches) {
 	int EncoderUnits = 0;
-	EncoderUnits = inches * ENCODER_VALUES_PER_INCH;//56.7 assuming 4 inch high-traction wheels
+	EncoderUnits = inches * ENCODER_VALUES_PER_INCH;//56.7 assuming 6 inch high-traction wheels
 	return EncoderUnits;
 }
 

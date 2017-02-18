@@ -34,12 +34,12 @@ void TeleopControl::Execute(){
 		driveReverse = false;
 	}
 	if(driveReverse){//if we're in reverse mode
-		driveSubsystem->Arcade(-gamePad->GetRawAxis(GAMEPAD_1_STICK_Y),
+		driveSubsystem->Arcade(gamePad->GetRawAxis(GAMEPAD_1_STICK_Y),
 									   -gamePad->GetRawAxis(GAMEPAD_1_STICK_X));//drive is reversed (not the minuses)
 		SmartDashboard::PutString("ReverseDrive Status:", "Activated");
 	}else{
-		driveSubsystem->Arcade(gamePad->GetRawAxis(GAMEPAD_1_STICK_Y),
-									   gamePad->GetRawAxis(GAMEPAD_1_STICK_X));//otherwise drive is normal
+		driveSubsystem->Arcade(-gamePad->GetRawAxis(GAMEPAD_1_STICK_Y),
+									   -gamePad->GetRawAxis(GAMEPAD_1_STICK_X));//otherwise drive is normal
 		SmartDashboard::PutString("ReverseDrive Status:", "Normal");
 	}
 }
