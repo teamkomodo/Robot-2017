@@ -10,7 +10,7 @@
 
 class Hopper : public Subsystem {
 private:
-	Talon HopperMotor {CONVEYOR_OUTPUT_CHANNEL};
+	Talon HopperMotor {HOPPER_OUTPUT_CHANNEL};
 	Encoder *HopperEncoder;
 
 public:

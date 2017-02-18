@@ -18,14 +18,16 @@ void HopperWithGamepad::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void HopperWithGamepad::Execute() {
 	if(gamePad->GetRawButton(5)){
-		while(encoder->GetRaw()< HOPPER_MAXIMUM_ENCODER){
+		//while(encoder->GetRaw()< HOPPER_MAXIMUM_ENCODER){
 			hopperSubsystem->run(.5);
-		}
-		hopperSubsystem->stop();
+		//}
+		//hopperSubsystem->stop();
 	}else if (gamePad->GetRawButton(3)){
-		while(encoder->GetRaw()> 0){
+		//while(encoder->GetRaw()> 0){
 			hopperSubsystem->run(-.5);
-		}
+		//}
+		//hopperSubsystem->stop();
+	}else{
 		hopperSubsystem->stop();
 	}
 }
