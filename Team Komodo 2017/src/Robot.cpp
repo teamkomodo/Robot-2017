@@ -13,6 +13,8 @@
 #include "Subsystems/Drive.h"
 #include "Commands/TeleopControl.h"
 #include "Commands/HopperWithGamepad.h"
+#include "Commands/ConveyorButtonControl.h"
+
 
 /**
  * The code for Team Komodo's 2017 robot.
@@ -93,9 +95,11 @@ void Robot::AutonomousPeriodic() {
 void Robot::TeleopInit() {
 	// You don't need to manually start the default command of a subsystem
 	// Experimentally confirmed 1/26/17 Max + Daniel
-	// apparently you actually do 02/18/17 Max
+	// Apparently you actually do, just don't put it in TeleopPeriodic
+	// or it will create a new TeleopControl object every 20 secs. 02/18/17 Max
 	Scheduler::GetInstance()->AddCommand(new TeleopControl);
 	Scheduler::GetInstance()->AddCommand(new HopperWithGamepad);
+	Scheduler::GetInstance()->AddCommand(new ConveyorButtonControl);
 }
 
 /**
@@ -106,7 +110,7 @@ void Robot::TeleopPeriodic() {
 	//even though it is the default command of the Drive subsystem
 	//and the default command of the lift subsystem, LiftWithGamepad, was getting
 	//run without me having to add it. 01/27/17 Max
-	//cancel that. It caused big problems 02/18/17 Max
+	//Cancel that. It caused big problems 02/18/17 Max
 
 	Scheduler::GetInstance()->Run();
 }

@@ -23,8 +23,8 @@ public:
 	void Stop();
 	void ResetLeftEncoder();
 	void ResetRightEncoder();
-	int GetLeftEncoderValue();
-	int GetRightEncoderValue();
+	double GetLeftEncoderValue();
+	double GetRightEncoderValue();
 	Encoder* GetLeftEncoder();
 	Encoder* GetRightEncoder();
 };

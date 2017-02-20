@@ -3,17 +3,17 @@
 
 
 
-#include "../CommandBase.h"
+#include "CommandBase.h"
+#include "WPILib.h"
 
 
 class ConveyorButtonControl : public CommandBase {
 private:
 	Joystick *gamePad;
-	int buttonID;
 	BallManipulator* ballManipulatorSubsystem;
 
 public:
-	ConveyorButtonControl(int controlButtonID);
+	ConveyorButtonControl();
 	void Initialize();
 	void Execute();
 	bool IsFinished();

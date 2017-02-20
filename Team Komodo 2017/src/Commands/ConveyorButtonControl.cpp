@@ -1,12 +1,12 @@
 #include "ConveyorButtonControl.h"
+#include "../CommandBase.h"
 
-ConveyorButtonControl::ConveyorButtonControl(int controlButtonID) {
+ConveyorButtonControl::ConveyorButtonControl() : CommandBase("ConveyorButtonControl") {
 	// Use Requires() here to declare subsystem dependencies
 	ballManipulatorSubsystem = CommandBase::retrieveBallManipulatorSubsystem();
 	Requires(ballManipulatorSubsystem);
 
 	gamePad = CommandBase::retrieveOperatorInterface()->getJoystick1();
-	buttonID = controlButtonID;
 }
 
 // Called just before this Command runs the first time
@@ -16,7 +16,7 @@ void ConveyorButtonControl::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void ConveyorButtonControl::Execute() {
-	if (gamePad->GetRawButton(buttonID))
+	if (gamePad->GetRawButton(6))
 		ballManipulatorSubsystem->run();
 	else
 		ballManipulatorSubsystem->stop();

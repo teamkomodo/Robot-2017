@@ -4,7 +4,7 @@
 
 Drive::Drive() : Subsystem("DriveSubsystem") {
 	rightEncoder = new Encoder(RIGHT_ENCODER_CHANNEL_A, RIGHT_ENCODER_CHANNEL_B);
-	leftEncoder = new Encoder(RIGHT_ENCODER_CHANNEL_A, RIGHT_ENCODER_CHANNEL_B);
+	leftEncoder = new Encoder(LEFT_ENCODER_CHANNEL_A, LEFT_ENCODER_CHANNEL_B);
 }
 
 void Drive::InitDefaultCommand() {
@@ -50,11 +50,11 @@ void Drive::ResetRightEncoder(){
 	rightEncoder->Reset();
 }
 
-int Drive::GetLeftEncoderValue(){
+double Drive::GetLeftEncoderValue(){
 	return leftEncoder->GetRaw();
 }
 
-int Drive::GetRightEncoderValue(){
+double Drive::GetRightEncoderValue(){
 	return rightEncoder->GetRaw();
 }
 

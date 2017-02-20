@@ -6,7 +6,7 @@
 #include "WPILib.h"
 
 Hopper::Hopper() : Subsystem("Hopper") {
-	HopperEncoder = new Encoder(CONVEYOR_ENCODER_CHANNEL_A, CONVEYOR_ENCODER_CHANNEL_B);
+	HopperEncoder = new Encoder(HOPPER_ENCODER_CHANNEL_A, HOPPER_ENCODER_CHANNEL_B);
 }
 
 void Hopper::InitDefaultCommand() {

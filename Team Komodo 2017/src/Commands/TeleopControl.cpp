@@ -42,6 +42,8 @@ void TeleopControl::Execute(){
 									   -gamePad->GetRawAxis(GAMEPAD_1_STICK_X));//otherwise drive is normal
 		SmartDashboard::PutString("ReverseDrive Status:", "Normal");
 	}
+	SmartDashboard::PutNumber("Left Encoder Value", driveSubsystem->GetLeftEncoderValue());
+	SmartDashboard::PutNumber("Right Encoder Value", driveSubsystem->GetRightEncoderValue());
 }
 
 

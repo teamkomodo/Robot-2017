@@ -30,8 +30,8 @@ void HopperWithGamepad::Execute() {
 	}else{
 		hopperSubsystem->stop();
 	}
+	SmartDashboard::PutNumber("encoderValue", encoder->GetRaw());
 }
-
 // Make this return true when this Command no longer needs to run execute()
 bool HopperWithGamepad::IsFinished() {
 	return false;
