@@ -39,7 +39,7 @@ void TeleopControl::Execute(){
 				driveSubsystem->Tank(leftJoystick->GetRawAxis(GAMEPAD_1_STICK_Y), rightJoystick->GetRawAxis(GAMEPAD_2_STICK_Y));
 				SmartDashboard::PutString("ReverseDrive Status:", "Activated");
 			}else{
-				driveSubsystem->Tank(-leftJoystick->GetRawAxis(GAMEPAD_1_STICK_Y), rightJoystick->GetRawAxis(GAMEPAD_2_STICK_Y));
+				driveSubsystem->Tank(-leftJoystick->GetRawAxis(GAMEPAD_1_STICK_Y), -rightJoystick->GetRawAxis(GAMEPAD_2_STICK_Y));
 				SmartDashboard::PutString("ReverseDrive Status:", "Normal");
 			}
 	break;
