@@ -8,7 +8,7 @@
 
 class Lift : public Subsystem {
 private:
-	Talon liftMotor {WINCH_OUTPUT_CHANNEL};
+	VictorSP liftMotor {WINCH_OUTPUT_CHANNEL};
 	DigitalInput limitSwitch {LIFT_LIMIT_SWITCH_CHANNEL};
 
 public:

@@ -10,7 +10,7 @@
 
 class BallManipulator : public Subsystem {
 private:
-	Talon conveyorBeltMotor {CONVEYOR_OUTPUT_CHANNEL};
+	VictorSP conveyorBeltMotor {CONVEYOR_OUTPUT_CHANNEL};
 
 public:
 	BallManipulator();
