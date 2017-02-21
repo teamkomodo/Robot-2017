@@ -5,7 +5,7 @@
 HopperWithGamepad::HopperWithGamepad() {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
-	gamePad = CommandBase::retrieveOperatorInterface()->getJoystick2();
+	gamePad = CommandBase::retrieveOperatorInterface()->getDolphin();
 	hopperSubsystem = CommandBase::retrieveHopperSubsystem();
 	encoder = hopperSubsystem->getEncoder();
 }
@@ -17,19 +17,7 @@ void HopperWithGamepad::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void HopperWithGamepad::Execute() {
-	if(gamePad->GetRawButton(5)){
-		//while(encoder->GetRaw()< HOPPER_MAXIMUM_ENCODER){
-			hopperSubsystem->run(.5);
-		//}
-		//hopperSubsystem->stop();
-	}else if (gamePad->GetRawButton(3)){
-		//while(encoder->GetRaw()> 0){
-			hopperSubsystem->run(-.5);
-		//}
-		//hopperSubsystem->stop();
-	}else{
-		hopperSubsystem->stop();
-	}
+	hopperSubsystem->run(gamePad->GetRawAxis(GAMEPAD_3_RSTICK_Y));
 	SmartDashboard::PutNumber("encoderValue", encoder->GetRaw());
 }
 // Make this return true when this Command no longer needs to run execute()

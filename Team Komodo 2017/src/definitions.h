@@ -3,6 +3,7 @@
 
 
 // gamepad stuff
+#define GAMEPAD_3_INPUT_CHANNEL		2
 #define GAMEPAD_2_INPUT_CHANNEL		1
 #define GAMEPAD_1_INPUT_CHANNEL		0
 
@@ -11,6 +12,14 @@
 
 #define GAMEPAD_2_STICK_X			0
 #define GAMEPAD_2_STICK_Y			1
+
+#define GAMEPAD_3_LSTICK_X			0
+#define GAMEPAD_3_LSTICK_Y			1
+
+#define GAMEPAD_3_RSTICK_X			4
+#define GAMEPAD_3_RSTICK_Y			5
+
+#define DRIVE_MODE					1//1 = tank, 2 = arcade 3 = split arcade
 
 //motor channels
 #define WINCH_OUTPUT_CHANNEL		4

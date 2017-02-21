@@ -16,6 +16,12 @@ void BallManipulator::run() {
 	conveyorBeltMotor.SetSpeed(1);
 }
 
+void BallManipulator::runBackward() {
+	// We might want a constant for the speed
+	// 1 is probably not the speed we want
+	conveyorBeltMotor.SetSpeed(-1);
+}
+
 void BallManipulator::stop() {
 	conveyorBeltMotor.SetSpeed(0);
 }

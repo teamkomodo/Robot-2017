@@ -10,7 +10,8 @@
 class Drive;
 class TeleopControl : public CommandBase {
 private:
-	Joystick *gamePad;
+	Joystick *leftJoystick;
+	Joystick *rightJoystick;
 	Drive* driveSubsystem;
 	bool driveReverse;
 	bool buttonPressed;

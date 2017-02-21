@@ -20,6 +20,7 @@ public:
 	void Left(double amt);
 	void Right(double amt);
 	void Arcade(double y, double x);
+	void Tank(double left, double right);
 	void Stop();
 	void ResetLeftEncoder();
 	void ResetRightEncoder();
