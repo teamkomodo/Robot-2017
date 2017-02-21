@@ -17,6 +17,7 @@ public:
 	void InitDefaultCommand();
 
 	void run();
+	void runBackward();
 	void stop();
 };
 

@@ -38,6 +38,10 @@ void Drive::Arcade(double speed, double turn) {
 	std::cout << "Speed:"+std::to_string(speed) + " Turn:"+std::to_string(turn) << std::endl;
 }
 
+void Drive::Tank(double left, double right) {
+	drive.TankDrive(left, right);
+}
+
 void Drive::Stop() {
 	drive.ArcadeDrive(0, 0.0);
 }

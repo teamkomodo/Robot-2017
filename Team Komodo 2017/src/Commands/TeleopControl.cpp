@@ -10,7 +10,8 @@ TeleopControl::TeleopControl() : CommandBase("TeleopControl") {
 	buttonPressed = false;//used in the code to prevent repeat button presses.
 	Requires(driveSubsystem);
 
-	gamePad = CommandBase::retrieveOperatorInterface()->getJoystick1();
+	leftJoystick = CommandBase::retrieveOperatorInterface()->getLeftJoystick();
+	rightJoystick = CommandBase::retrieveOperatorInterface()->getRightJoystick();
 }
 
 // Called just before this Command runs the first time
@@ -28,19 +29,41 @@ void TeleopControl::Execute(){
 	} else if(gamePad->GetRawButton(reverseButtonIndex) == false && buttonPressed == true){
 		buttonPressed = false;
 	}*/
-	if(gamePad->GetRawButton(reverseButtonIndex)){//if the button is pressed (currently the trigger on the driver joystick)
-		driveReverse = true;
-	}else{
-		driveReverse = false;
+	if(leftJoystick->GetRawButton(reverseButtonIndex)){//if the button is pressed (currently the trigger on the driver joystick)
+		driveReverse = !driveReverse;
 	}
-	if(driveReverse){//if we're in reverse mode
-		driveSubsystem->Arcade(gamePad->GetRawAxis(GAMEPAD_1_STICK_Y),
-									   -gamePad->GetRawAxis(GAMEPAD_1_STICK_X));//drive is reversed (not the minuses)
-		SmartDashboard::PutString("ReverseDrive Status:", "Activated");
-	}else{
-		driveSubsystem->Arcade(-gamePad->GetRawAxis(GAMEPAD_1_STICK_Y),
-									   -gamePad->GetRawAxis(GAMEPAD_1_STICK_X));//otherwise drive is normal
-		SmartDashboard::PutString("ReverseDrive Status:", "Normal");
+	switch (DRIVE_MODE){
+	case 1://tank drive
+		SmartDashboard::PutString("Drive Mode:", "Tank");
+		if(driveReverse){//if we're in reverse mode
+				driveSubsystem->Tank(leftJoystick->GetRawAxis(GAMEPAD_1_STICK_Y), rightJoystick->GetRawAxis(GAMEPAD_2_STICK_Y));
+				SmartDashboard::PutString("ReverseDrive Status:", "Activated");
+			}else{
+				driveSubsystem->Tank(-leftJoystick->GetRawAxis(GAMEPAD_1_STICK_Y), rightJoystick->GetRawAxis(GAMEPAD_2_STICK_Y));
+				SmartDashboard::PutString("ReverseDrive Status:", "Normal");
+			}
+	break;
+	case 2:
+		SmartDashboard::PutString("Drive Mode:", "Arcade");
+		if(driveReverse){//if we're in reverse mode
+				driveSubsystem->Arcade(-leftJoystick->GetRawAxis(GAMEPAD_1_STICK_Y), leftJoystick->GetRawAxis(GAMEPAD_1_STICK_X));
+				SmartDashboard::PutString("ReverseDrive Status:", "Activated");
+			}else{
+				driveSubsystem->Arcade(leftJoystick->GetRawAxis(GAMEPAD_1_STICK_Y), leftJoystick->GetRawAxis(GAMEPAD_1_STICK_X));
+				SmartDashboard::PutString("ReverseDrive Status:", "Normal");
+			}
+	break;
+	case 3:
+	default:
+		SmartDashboard::PutString("Drive Mode:", "Arcade");
+		if(driveReverse){//if we're in reverse mode
+			driveSubsystem->Arcade(-leftJoystick->GetRawAxis(GAMEPAD_1_STICK_Y), rightJoystick->GetRawAxis(GAMEPAD_1_STICK_X));
+			SmartDashboard::PutString("ReverseDrive Status:", "Activated");
+		}else{
+			driveSubsystem->Arcade(leftJoystick->GetRawAxis(GAMEPAD_1_STICK_Y), rightJoystick->GetRawAxis(GAMEPAD_1_STICK_X));
+			SmartDashboard::PutString("ReverseDrive Status:", "Normal");
+		}
+	break;
 	}
 	SmartDashboard::PutNumber("Left Encoder Value", driveSubsystem->GetLeftEncoderValue());
 	SmartDashboard::PutNumber("Right Encoder Value", driveSubsystem->GetRightEncoderValue());

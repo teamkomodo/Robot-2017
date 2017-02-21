@@ -22,8 +22,9 @@
 
 class OI {
 private:
-	Joystick *joystick1;
-	Joystick *joystick2;
+	Joystick *leftJoystick;
+	Joystick *rightJoystick;
+	Joystick *dolphin;
 
 	// Change to match the actual number of button
 	bool previousButtonStateJoystick1[NUMBER_OF_BUTTONS_JOYSTICK_1];
@@ -32,8 +33,9 @@ private:
 public:
 	OI();
 
-	Joystick* getJoystick1();
-	Joystick* getJoystick2();
+	Joystick* getLeftJoystick();
+	Joystick* getRightJoystick();
+	Joystick* getDolphin();
 
 	bool isButtonJustPressedJoystick1(int buttonID);
 	bool isButtonJustPressedJoystick2(int buttonID);

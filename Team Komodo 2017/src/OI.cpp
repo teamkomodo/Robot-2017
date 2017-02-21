@@ -8,22 +8,27 @@
 #include <OI.h>
 
 OI::OI() {
-	joystick1 = new Joystick(GAMEPAD_1_INPUT_CHANNEL);
-	joystick2 = new Joystick(GAMEPAD_2_INPUT_CHANNEL);
+	leftJoystick = new Joystick(GAMEPAD_1_INPUT_CHANNEL);
+	rightJoystick = new Joystick(GAMEPAD_2_INPUT_CHANNEL);
+	dolphin = new Joystick(GAMEPAD_3_INPUT_CHANNEL);
 }
 
 /**
  * Returns a pointer to the joystick 1 control
  */
-Joystick* OI::getJoystick1() {
-	return joystick1;
+Joystick* OI::getLeftJoystick() {
+	return leftJoystick;
 }
 
 /**
  * Returns a pointer to the joystick 2 control
  */
-Joystick* OI::getJoystick2() {
-	return joystick2;
+Joystick* OI::getRightJoystick() {
+	return rightJoystick;
+}
+
+Joystick* OI::getDolphin(){
+	return dolphin;
 }
 
 
@@ -35,7 +40,7 @@ Joystick* OI::getJoystick2() {
  * the button is released
  */
 bool OI::isButtonJustPressedJoystick1(int buttonID) {
-	if (joystick1->GetRawButton(buttonID) && !previousButtonStateJoystick1[buttonID]) {
+	if (leftJoystick->GetRawButton(buttonID) && !previousButtonStateJoystick1[buttonID]) {
 		previousButtonStateJoystick1[buttonID] = true;
 		return true;
 	}
@@ -51,7 +56,7 @@ bool OI::isButtonJustPressedJoystick1(int buttonID) {
  * the button is released
  */
 bool OI::isButtonJustPressedJoystick2(int buttonID) {
-	if (joystick2->GetRawButton(buttonID) && !previousButtonStateJoystick2[buttonID]) {
+	if (rightJoystick->GetRawButton(buttonID) && !previousButtonStateJoystick2[buttonID]) {
 		previousButtonStateJoystick2[buttonID] = true;
 		return true;
 	}
@@ -67,7 +72,7 @@ bool OI::isButtonJustPressedJoystick2(int buttonID) {
  */
 void OI::updateButtonStateJoystick1() {
 	for (int i=0; i<NUMBER_OF_BUTTONS_JOYSTICK_1; i++) {
-		previousButtonStateJoystick1[i] = joystick1->GetRawButton(i);
+		previousButtonStateJoystick1[i] = leftJoystick->GetRawButton(i);
 	}
 }
 
@@ -78,6 +83,6 @@ void OI::updateButtonStateJoystick1() {
  */
 void OI::updateButtonStateJoystick2() {
 	for (int i=0; i<NUMBER_OF_BUTTONS_JOYSTICK_2; i++) {
-		previousButtonStateJoystick2[i] = joystick2->GetRawButton(i);
+		previousButtonStateJoystick2[i] = rightJoystick->GetRawButton(i);
 	}
 }

@@ -6,7 +6,7 @@ ConveyorButtonControl::ConveyorButtonControl() : CommandBase("ConveyorButtonCont
 	ballManipulatorSubsystem = CommandBase::retrieveBallManipulatorSubsystem();
 	Requires(ballManipulatorSubsystem);
 
-	gamePad = CommandBase::retrieveOperatorInterface()->getJoystick1();
+	gamePad = CommandBase::retrieveOperatorInterface()->getDolphin();
 }
 
 // Called just before this Command runs the first time
@@ -16,10 +16,14 @@ void ConveyorButtonControl::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void ConveyorButtonControl::Execute() {
-	if (gamePad->GetRawButton(6))
+	if (gamePad->GetRawButton(4)){
 		ballManipulatorSubsystem->run();
-	else
+	}
+	else if (gamePad->GetRawButton(1)){
+		ballManipulatorSubsystem->runBackward();
+	}else{
 		ballManipulatorSubsystem->stop();
+	}
 }
 
 // Make this return true when this Command no longer needs to run execute()
