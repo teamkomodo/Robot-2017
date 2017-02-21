@@ -16,55 +16,53 @@ TeleopControl::TeleopControl() : CommandBase("TeleopControl") {
 
 // Called just before this Command runs the first time
 void TeleopControl::Initialize() {
-
+	SmartDashboard::GetNumber("Drive Mode (1=Tank 2=Arcade 3=Split Arcade)", 1);
 }
 
 // Called repeatedly when this Command is scheduled to run
 void TeleopControl::Execute(){
-	//code to prevent repeated button presses. I copied it from the 2016 code but couldn't get it to work. 01/27/17 Max
-	/*if(gamePad->GetRawButton(reverseButtonIndex)== true && buttonPressed == false){
-		buttonPressed = true;
-
-		SmartDashboard::PutBoolean("driveReverse", driveReverse);
-	} else if(gamePad->GetRawButton(reverseButtonIndex) == false && buttonPressed == true){
-		buttonPressed = false;
-	}*/
 	if(leftJoystick->GetRawButton(reverseButtonIndex)){//if the button is pressed (currently the trigger on the driver joystick)
-		driveReverse = !driveReverse;
-	}
-	switch (DRIVE_MODE){
-	case 1://tank drive
-		SmartDashboard::PutString("Drive Mode:", "Tank");
-		if(driveReverse){//if we're in reverse mode
-				driveSubsystem->Tank(leftJoystick->GetRawAxis(GAMEPAD_1_STICK_Y), rightJoystick->GetRawAxis(GAMEPAD_2_STICK_Y));
-				SmartDashboard::PutString("ReverseDrive Status:", "Activated");
-			}else{
-				driveSubsystem->Tank(-leftJoystick->GetRawAxis(GAMEPAD_1_STICK_Y), -rightJoystick->GetRawAxis(GAMEPAD_2_STICK_Y));
-				SmartDashboard::PutString("ReverseDrive Status:", "Normal");
-			}
-	break;
-	case 2:
-		SmartDashboard::PutString("Drive Mode:", "Arcade");
-		if(driveReverse){//if we're in reverse mode
-				driveSubsystem->Arcade(-leftJoystick->GetRawAxis(GAMEPAD_1_STICK_Y), leftJoystick->GetRawAxis(GAMEPAD_1_STICK_X));
-				SmartDashboard::PutString("ReverseDrive Status:", "Activated");
-			}else{
-				driveSubsystem->Arcade(leftJoystick->GetRawAxis(GAMEPAD_1_STICK_Y), leftJoystick->GetRawAxis(GAMEPAD_1_STICK_X));
-				SmartDashboard::PutString("ReverseDrive Status:", "Normal");
-			}
-	break;
-	case 3:
-	default:
-		SmartDashboard::PutString("Drive Mode:", "Arcade");
-		if(driveReverse){//if we're in reverse mode
-			driveSubsystem->Arcade(-leftJoystick->GetRawAxis(GAMEPAD_1_STICK_Y), rightJoystick->GetRawAxis(GAMEPAD_1_STICK_X));
-			SmartDashboard::PutString("ReverseDrive Status:", "Activated");
+		driveReverse = !driveReverse;//toggle reverse mode
+		if (driveReverse == true){
+			SmartDashboard::PutString("ReverseDrive Status (Press left joystick trigger to toggle)", "Activated");
 		}else{
-			driveSubsystem->Arcade(leftJoystick->GetRawAxis(GAMEPAD_1_STICK_Y), rightJoystick->GetRawAxis(GAMEPAD_1_STICK_X));
-			SmartDashboard::PutString("ReverseDrive Status:", "Normal");
+			SmartDashboard::PutString("ReverseDrive Status (Press left joystick trigger to toggle)", "Normal");
+		}
+	}
+	switch (SmartDashboard::GetNumber("Drive Mode (1=Tank 2=Arcade 3=Split Arcade)", 1)){
+	case 1://tank drive
+		SmartDashboard::PutString("Drive Mode", "Tank");
+		if(driveReverse){//if we're in reverse mode
+			//tank drive in reverse using the left and right joysticks
+				driveSubsystem->Tank(leftJoystick->GetRawAxis(GAMEPAD_1_STICK_Y), rightJoystick->GetRawAxis(GAMEPAD_2_STICK_Y));
+			}else{
+				//tank drive forward using the left and right joysticks
+				driveSubsystem->Tank(-leftJoystick->GetRawAxis(GAMEPAD_1_STICK_Y), -rightJoystick->GetRawAxis(GAMEPAD_2_STICK_Y));
+			}
+	break;
+	case 2://arcade
+		SmartDashboard::PutString("Drive Mode", "Arcade");
+		if(driveReverse){//if we're in reverse mode
+				//arcade drive in reverse using the left joystick
+				driveSubsystem->Arcade(-leftJoystick->GetRawAxis(GAMEPAD_1_STICK_Y), leftJoystick->GetRawAxis(GAMEPAD_1_STICK_X));
+			}else{
+				//arcade drive forward using the left joystick
+				driveSubsystem->Arcade(leftJoystick->GetRawAxis(GAMEPAD_1_STICK_Y), leftJoystick->GetRawAxis(GAMEPAD_1_STICK_X));
+			}
+	break;
+	case 3://split arcade
+	default:
+		SmartDashboard::PutString("Drive Mode", "Split Arcade");
+		if(driveReverse){//if we're in reverse mode
+			//drive in reverse using split arcade (forward motion controlled by left gamepad y axis, turn controlled by right gamepad x axis)
+			driveSubsystem->Arcade(-leftJoystick->GetRawAxis(GAMEPAD_1_STICK_Y), rightJoystick->GetRawAxis(GAMEPAD_2_STICK_X));
+		}else{
+			//drive forward using split arcade (forward motion controlled by left gamepad y axis, turn controlled by right gamepad x axis)
+			driveSubsystem->Arcade(leftJoystick->GetRawAxis(GAMEPAD_1_STICK_Y), rightJoystick->GetRawAxis(GAMEPAD_2_STICK_X));
 		}
 	break;
 	}
+	//post encoder values to Smart Dashboard
 	SmartDashboard::PutNumber("Left Encoder Value", driveSubsystem->GetLeftEncoderValue());
 	SmartDashboard::PutNumber("Right Encoder Value", driveSubsystem->GetRightEncoderValue());
 }

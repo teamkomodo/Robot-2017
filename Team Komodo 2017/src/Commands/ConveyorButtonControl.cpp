@@ -16,10 +16,10 @@ void ConveyorButtonControl::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void ConveyorButtonControl::Execute() {
-	if (gamePad->GetRawButton(4)){
+	if (gamePad->GetRawButton(1)){
 		ballManipulatorSubsystem->run();
 	}
-	else if (gamePad->GetRawButton(1)){
+	else if (gamePad->GetRawButton(4)){
 		ballManipulatorSubsystem->runBackward();
 	}else{
 		ballManipulatorSubsystem->stop();
