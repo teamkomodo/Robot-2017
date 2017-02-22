@@ -16,9 +16,8 @@ TeleopControl::TeleopControl() : CommandBase("TeleopControl") {
 
 // Called just before this Command runs the first time
 void TeleopControl::Initialize() {
-	SmartDashboard::GetNumber("Drive Mode (1=Tank 2=Arcade 3=Split Arcade)", 1);
+	//SmartDashboard::PutNumber("Drive Mode (1=Tank 2=Arcade 3=Split Arcade)", 1);
 }
-
 // Called repeatedly when this Command is scheduled to run
 void TeleopControl::Execute(){
 	if(leftJoystick->GetRawButton(reverseButtonIndex)){//if the button is pressed (currently the trigger on the driver joystick)
@@ -29,7 +28,7 @@ void TeleopControl::Execute(){
 			SmartDashboard::PutString("ReverseDrive Status (Press left joystick trigger to toggle)", "Normal");
 		}
 	}
-	switch (SmartDashboard::GetNumber("Drive Mode (1=Tank 2=Arcade 3=Split Arcade)", 1)){
+	switch (DRIVE_MODE){
 	case 1://tank drive
 		SmartDashboard::PutString("Drive Mode", "Tank");
 		if(driveReverse){//if we're in reverse mode
@@ -37,7 +36,7 @@ void TeleopControl::Execute(){
 				driveSubsystem->Tank(leftJoystick->GetRawAxis(GAMEPAD_1_STICK_Y), rightJoystick->GetRawAxis(GAMEPAD_2_STICK_Y));
 			}else{
 				//tank drive forward using the left and right joysticks
-				driveSubsystem->Tank(-leftJoystick->GetRawAxis(GAMEPAD_1_STICK_Y), -rightJoystick->GetRawAxis(GAMEPAD_2_STICK_Y));
+				driveSubsystem->Tank(-rightJoystick->GetRawAxis(GAMEPAD_1_STICK_Y), -leftJoystick->GetRawAxis(GAMEPAD_2_STICK_Y));
 			}
 	break;
 	case 2://arcade

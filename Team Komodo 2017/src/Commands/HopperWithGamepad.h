@@ -8,6 +8,7 @@ private:
 	Joystick *gamePad;
 	Encoder *encoder;
 	Hopper* hopperSubsystem;
+	BallManipulator *ballManipulatorSubsystem;
 public:
 	HopperWithGamepad();
 	void Initialize();

@@ -7,6 +7,7 @@ HopperWithGamepad::HopperWithGamepad() {
 	// eg. Requires(Robot::chassis.get());
 	gamePad = CommandBase::retrieveOperatorInterface()->getDolphin();
 	hopperSubsystem = CommandBase::retrieveHopperSubsystem();
+	ballManipulatorSubsystem = CommandBase::retrieveBallManipulatorSubsystem();
 	encoder = hopperSubsystem->getEncoder();
 }
 
@@ -18,6 +19,11 @@ void HopperWithGamepad::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void HopperWithGamepad::Execute() {
 	hopperSubsystem->run(gamePad->GetRawAxis(GAMEPAD_3_RSTICK_Y));
+	if (abs(gamePad->GetRawAxis(GAMEPAD_3_RSTICK_Y))>.2){
+		ballManipulatorSubsystem->runBackward();
+	}else{
+		ballManipulatorSubsystem->stop();
+	}
 	SmartDashboard::PutNumber("Hopper Encoder Value", encoder->GetRaw());
 }
 // Make this return true when this Command no longer needs to run execute()

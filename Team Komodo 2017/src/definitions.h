@@ -19,7 +19,7 @@
 #define GAMEPAD_3_RSTICK_X			4
 #define GAMEPAD_3_RSTICK_Y			5
 
-#define DRIVE_MODE					1//1 = tank, 2 = arcade 3 = split arcade
+#define DRIVE_MODE					2//1 = tank, 2 = arcade 3 = split arcade
 
 //motor channels
 #define WINCH_OUTPUT_CHANNEL		4
