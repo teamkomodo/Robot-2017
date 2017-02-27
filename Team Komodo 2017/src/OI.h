@@ -9,13 +9,9 @@
 #define SRC_OI_H_
 
 
-
-// This is a really shitty system
 // There is a function in Joystick that gives us
 // the number of buttons, but too lazy to figure out
 // a way to use that, if it can be done at all
-#define NUMBER_OF_BUTTONS_JOYSTICK_1  100
-#define NUMBER_OF_BUTTONS_JOYSTICK_2  100
 
 #include "WPILib.h"
 #include "definitions.h"
@@ -25,10 +21,14 @@ private:
 	Joystick *leftJoystick;
 	Joystick *rightJoystick;
 	Joystick *dolphin;
+	int numberOfButtonsLeftJoystick = 100;
+	int numberOfButtonsRightJoystick = 100;
+	int numberOfButtonsDolphin = 100;
 
 	// Change to match the actual number of button
-	bool previousButtonStateJoystick1[NUMBER_OF_BUTTONS_JOYSTICK_1];
-	bool previousButtonStateJoystick2[NUMBER_OF_BUTTONS_JOYSTICK_2];
+	bool previousButtonStateLeftJoystick[numberOfButtonsLeftJoystick];
+	bool previousButtonStateRightJoystick[numberOfButtonsRightJoystick];
+	bool previousButtonStateDolphin[numberOfButtonsDolphin];
 
 public:
 	OI();
@@ -37,11 +37,13 @@ public:
 	Joystick* getRightJoystick();
 	Joystick* getDolphin();
 
-	bool isButtonJustPressedJoystick1(int buttonID);
-	bool isButtonJustPressedJoystick2(int buttonID);
+	bool isButtonJustPressedLeftJoystick(int buttonID);
+	bool isButtonJustPressedRightJoystick(int buttonID);
+	bool isButtonJustPressedDolphin(int buttonID);
 
-	void updateButtonStateJoystick1();
-	void updateButtonStateJoystick2();
+	void updateButtonStateLeftJoystick();
+	void updateButtonStateRightJoystick();
+	void updateButtonStateDolphin();
 };
 
 

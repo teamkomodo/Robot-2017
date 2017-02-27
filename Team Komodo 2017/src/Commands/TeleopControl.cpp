@@ -7,7 +7,6 @@ TeleopControl::TeleopControl() : CommandBase("TeleopControl") {
 	// Use Requires() here to declare subsystem dependencies
 	driveSubsystem = CommandBase::retrieveDriveSubsystem();
 	driveReverse = false;//used to tell if the robot is in reverse mode
-	buttonPressed = false;//used in the code to prevent repeat button presses.
 	Requires(driveSubsystem);
 
 	leftJoystick = CommandBase::retrieveOperatorInterface()->getLeftJoystick();
@@ -20,12 +19,12 @@ void TeleopControl::Initialize() {
 }
 // Called repeatedly when this Command is scheduled to run
 void TeleopControl::Execute(){
-	if(leftJoystick->GetRawButton(reverseButtonIndex)){//if the button is pressed (currently the trigger on the driver joystick)
-		driveReverse = !driveReverse;//toggle reverse mode
-		if (driveReverse == true){
-			SmartDashboard::PutString("ReverseDrive Status (Press left joystick trigger to toggle)", "Activated");
+	if(CommandBase::retrieveOperatorInterface()->isButtonJustPressedLeftJoystick(reverseButtonIndex)){//use the function in OI.cpp to prevent repeat button presses
+		driveReverse = !driveReverse;
+		if (driveReverse){
+			SmartDashboard::PutString("Drive Mode", "Reversed");
 		}else{
-			SmartDashboard::PutString("ReverseDrive Status (Press left joystick trigger to toggle)", "Normal");
+			SmartDashboard::PutString("Drive Mode", "Normal");
 		}
 	}
 	switch (DRIVE_MODE){
@@ -64,6 +63,7 @@ void TeleopControl::Execute(){
 	//post encoder values to Smart Dashboard
 	SmartDashboard::PutNumber("Left Encoder Value", driveSubsystem->GetLeftEncoderValue());
 	SmartDashboard::PutNumber("Right Encoder Value", driveSubsystem->GetRightEncoderValue());
+	CommandBase::retrieveOperatorInterface()->updateButtonStateLeftJoystick();//see OI.cpp
 }
 
 

@@ -14,7 +14,6 @@ private:
 	Joystick *rightJoystick;
 	Drive* driveSubsystem;
 	bool driveReverse;
-	bool buttonPressed;
 
 public:
 	TeleopControl();
