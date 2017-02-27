@@ -6,6 +6,7 @@
  */
 
 #include <OI.h>
+#include "WPILib.h"
 
 OI::OI() {
 	leftJoystick = new Joystick(GAMEPAD_1_INPUT_CHANNEL);

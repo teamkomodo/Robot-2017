@@ -21,14 +21,14 @@ private:
 	Joystick *leftJoystick;
 	Joystick *rightJoystick;
 	Joystick *dolphin;
-	int numberOfButtonsLeftJoystick = 100;
-	int numberOfButtonsRightJoystick = 100;
-	int numberOfButtonsDolphin = 100;
+	int numberOfButtonsLeftJoystick;
+	int numberOfButtonsRightJoystick;
+	int numberOfButtonsDolphin;
 
 	// Change to match the actual number of button
-	bool previousButtonStateLeftJoystick[numberOfButtonsLeftJoystick];
-	bool previousButtonStateRightJoystick[numberOfButtonsRightJoystick];
-	bool previousButtonStateDolphin[numberOfButtonsDolphin];
+	bool previousButtonStateLeftJoystick[50];
+	bool previousButtonStateRightJoystick[50];
+	bool previousButtonStateDolphin[50];
 
 public:
 	OI();
