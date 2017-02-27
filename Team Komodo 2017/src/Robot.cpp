@@ -27,7 +27,6 @@
 class Robot: public frc::IterativeRobot {
 public:
 	void RobotInit();
-
 	void DisabledInit();
 	void DisabledPeriodic();
 
@@ -54,7 +53,7 @@ void Robot::RobotInit() {
 	CameraServer::GetInstance()->StartAutomaticCapture();
 //	make sure the resolution is high enough *this has not been tested
 //	camera.SetResolution(640, 480);
-	SmartDashboard::PutData(CommandBase::retrieveLiftSubsystem());
+	SmartDashboard::PutNumber("Drive Mode Input", 1);
 }
 
 /**
@@ -96,7 +95,7 @@ void Robot::TeleopInit() {
 	// You don't need to manually start the default command of a subsystem
 	// Experimentally confirmed 1/26/17 Max + Daniel
 	// Apparently you actually do, just don't put it in TeleopPeriodic
-	// or it will create a new TeleopControl object every 20 secs. 02/18/17 Max
+	// or it will create a new TeleopControl object every 20 milliseconds 02/18/17 Max
 	Scheduler::GetInstance()->AddCommand(new TeleopControl);
 	Scheduler::GetInstance()->AddCommand(new HopperWithGamepad);
 	Scheduler::GetInstance()->AddCommand(new ConveyorButtonControl);

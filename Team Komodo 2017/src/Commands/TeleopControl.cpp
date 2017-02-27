@@ -8,7 +8,6 @@ TeleopControl::TeleopControl() : CommandBase("TeleopControl") {
 	driveSubsystem = CommandBase::retrieveDriveSubsystem();
 	driveReverse = false;//used to tell if the robot is in reverse mode
 	Requires(driveSubsystem);
-
 	leftJoystick = CommandBase::retrieveOperatorInterface()->getLeftJoystick();
 	rightJoystick = CommandBase::retrieveOperatorInterface()->getRightJoystick();
 }
@@ -27,7 +26,8 @@ void TeleopControl::Execute(){
 			SmartDashboard::PutString("Drive Mode", "Normal");
 		}
 	}
-	switch (DRIVE_MODE){
+	int driveMode = int(SmartDashboard::GetNumber("Drive Mode Input", 1));
+	switch (driveMode){
 	case 1://tank drive
 		SmartDashboard::PutString("Drive Mode", "Tank");
 		if(driveReverse){//if we're in reverse mode
