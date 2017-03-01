@@ -21,6 +21,9 @@ private:
 	Joystick *leftJoystick;
 	Joystick *rightJoystick;
 	Joystick *dolphin;
+	Button *leftTrigger;
+	Button *rightTrigger;
+
 	int numberOfButtonsLeftJoystick;
 	int numberOfButtonsRightJoystick;
 	int numberOfButtonsDolphin;
@@ -29,6 +32,8 @@ private:
 	bool previousButtonStateLeftJoystick[50];
 	bool previousButtonStateRightJoystick[50];
 	bool previousButtonStateDolphin[50];
+
+	bool reverseDrive = false;
 
 public:
 	OI();
@@ -44,6 +49,9 @@ public:
 	void updateButtonStateLeftJoystick();
 	void updateButtonStateRightJoystick();
 	void updateButtonStateDolphin();
+
+	void toggleReverseDrive();
+	bool isReverseDrive();
 };
 
 

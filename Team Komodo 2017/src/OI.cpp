@@ -8,10 +8,18 @@
 #include <OI.h>
 #include "WPILib.h"
 
+#include "./Commands/SwitchDriveReverse.h";
+
 OI::OI() {
 	leftJoystick = new Joystick(GAMEPAD_1_INPUT_CHANNEL);
 	rightJoystick = new Joystick(GAMEPAD_2_INPUT_CHANNEL);
 	dolphin = new Joystick(GAMEPAD_3_INPUT_CHANNEL);
+
+	leftTrigger = new JoystickButton(leftJoystick, 1);
+	rightTrigger = new JoystickButton(rightJoystick, 1);
+
+	leftTrigger->ToggleWhenPressed(new SwitchDriveReverse());
+
 	numberOfButtonsLeftJoystick = leftJoystick->GetButtonCount();
 	numberOfButtonsRightJoystick = rightJoystick->GetButtonCount();
 	numberOfButtonsDolphin = dolphin->GetButtonCount();
@@ -118,4 +126,12 @@ void OI::updateButtonStateDolphin() {
 	for (int i=0; i<numberOfButtonsDolphin; i++) {
 		previousButtonStateDolphin[i] = dolphin->GetRawButton(i);
 	}
+}
+
+void OI::toggleReverseDrive() {
+	reverseDrive = !reverseDrive;
+}
+
+bool OI::isReverseDrive() {
+	return reverseDrive;
 }

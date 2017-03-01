@@ -18,14 +18,15 @@ void TeleopControl::Initialize() {
 }
 // Called repeatedly when this Command is scheduled to run
 void TeleopControl::Execute(){
-	if(CommandBase::retrieveOperatorInterface()->isButtonJustPressedLeftJoystick(reverseButtonIndex)){//use the function in OI.cpp to prevent repeat button presses
-		driveReverse = !driveReverse;
-		if (driveReverse){
-			SmartDashboard::PutString("Drive Mode", "Reversed");
-		}else{
-			SmartDashboard::PutString("Drive Mode", "Normal");
-		}
+	//driveReverse is the state of the trigger
+	driveReverse = CommandBase::retrieveOperatorInterface()->isReverseDrive();
+
+	if (driveReverse){
+		SmartDashboard::PutString("Drive Mode", "Reversed");
+	}else{
+		SmartDashboard::PutString("Drive Mode", "Normal");
 	}
+
 	int driveMode = int(SmartDashboard::GetNumber("Drive Mode Input", 1));
 	switch (driveMode){
 	case 1://tank drive
