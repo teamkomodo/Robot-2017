@@ -43,8 +43,9 @@
 #define ROBOT_WIDTH_INCHES			23//confirmed
 #define HOPPER_MAXIMUM_ENCODER		200//wild guess
 
-
-
-
+#define JOYSTICK_STANDARD_DRIFT     0
+#define GYRO_SCALE_FACTOR 			0.8
+#define GYRO_DRIFT_VALUE            0.01
+#define GYRO_RUSH_SPEED				30
 
 #endif /* DEBUG_SRC_DEFINITIONS_H_ */

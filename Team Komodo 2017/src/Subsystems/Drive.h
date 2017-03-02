@@ -11,6 +11,8 @@ private:
 	RobotDrive drive {LEFT_DRIVE_OUTPUT_CHANNEL, RIGHT_DRIVE_OUTPUT_CHANNEL};
 	Encoder *leftEncoder;
 	Encoder *rightEncoder;
+	ADXRS450_Gyro *driveGyro;
+
 public:
 	Drive();
 	void InitDefaultCommand() override;
@@ -19,7 +21,7 @@ public:
 	void Backward(double speed);
 	void Left(double amt);
 	void Right(double amt);
-	void Arcade(double y, double x);
+	void Arcade(double y, double x, double editedGyroAngle);
 	void Tank(double left, double right);
 	void Stop();
 	void ResetLeftEncoder();
@@ -28,6 +30,7 @@ public:
 	double GetRightEncoderValue();
 	Encoder* GetLeftEncoder();
 	Encoder* GetRightEncoder();
+	ADXRS450_Gyro* GetDriveGyro();
 };
 
 

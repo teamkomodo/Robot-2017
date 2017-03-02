@@ -13,6 +13,8 @@ private:
 	Joystick *leftJoystick;
 	Joystick *rightJoystick;
 	Drive* driveSubsystem;
+	ADXRS450_Gyro* driveGyro;
+
 	bool driveReverse;
 
 public:

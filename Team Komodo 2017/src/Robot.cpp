@@ -13,6 +13,8 @@
 #include "Subsystems/Drive.h"
 #include "Commands/TeleopControl.h"
 #include "Commands/HopperWithGamepad.h"
+#include "Commands/LiftWithGamepad.h"
+
 #include "Commands/ConveyorButtonControl.h"
 
 
@@ -97,6 +99,7 @@ void Robot::TeleopInit() {
 	// Apparently you actually do, just don't put it in TeleopPeriodic
 	// or it will create a new TeleopControl object every 20 milliseconds 02/18/17 Max
 	Scheduler::GetInstance()->AddCommand(new TeleopControl);
+	Scheduler::GetInstance()->AddCommand(new LiftWithGamepad);
 	Scheduler::GetInstance()->AddCommand(new HopperWithGamepad);
 	Scheduler::GetInstance()->AddCommand(new ConveyorButtonControl);
 }

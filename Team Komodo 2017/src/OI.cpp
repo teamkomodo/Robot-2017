@@ -8,7 +8,7 @@
 #include <OI.h>
 #include "WPILib.h"
 
-#include "./Commands/SwitchDriveReverse.h";
+#include "./Commands/SwitchDriveReverse.h"
 
 OI::OI() {
 	leftJoystick = new Joystick(GAMEPAD_1_INPUT_CHANNEL);

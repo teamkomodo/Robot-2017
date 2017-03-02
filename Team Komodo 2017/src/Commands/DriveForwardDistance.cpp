@@ -23,12 +23,12 @@ void DriveForwardDistance::Initialize() {
 void DriveForwardDistance::Execute() {
 	if (driveSubsystem->GetLeftEncoderValue() > EncoderConverter::InchesToEncoder(-distanceInches)
 	  && driveSubsystem->GetRightEncoderValue() < EncoderConverter::InchesToEncoder(distanceInches)){
-			driveSubsystem->Arcade(1, 0);
+			driveSubsystem->Arcade(1, 0, 0);
 		} else {
 			isDone = true;
 			driveSubsystem->ResetRightEncoder();
 			driveSubsystem->ResetLeftEncoder();
-			driveSubsystem->Arcade(0,0);
+			driveSubsystem->Arcade(0,0, 0);
 		}
 }
 

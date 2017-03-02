@@ -5,6 +5,7 @@
 Drive::Drive() : Subsystem("DriveSubsystem") {
 	rightEncoder = new Encoder(RIGHT_ENCODER_CHANNEL_A, RIGHT_ENCODER_CHANNEL_B);
 	leftEncoder = new Encoder(LEFT_ENCODER_CHANNEL_A, LEFT_ENCODER_CHANNEL_B);
+	driveGyro = new ADXRS450_Gyro();
 }
 
 void Drive::InitDefaultCommand() {
@@ -33,8 +34,13 @@ void Drive::Right(double amt) {
 	drive.ArcadeDrive(0, amt);
 }
 
-void Drive::Arcade(double speed, double turn) {
-	drive.ArcadeDrive(speed, turn);
+void Drive::Arcade(double speed, double turn, double editedGyroAngle) {
+	std::cout << "Angle: " + std::to_string(editedGyroAngle) << std::endl;
+	if (fabs(turn) > JOYSTICK_STANDARD_DRIFT) {
+		drive.ArcadeDrive(speed, turn);
+	} else {
+		drive.ArcadeDrive(speed, editedGyroAngle * GYRO_SCALE_FACTOR);
+	}
 	std::cout << "Speed:"+std::to_string(speed) + " Turn:"+std::to_string(turn) << std::endl;
 }
 
@@ -68,4 +74,8 @@ Encoder* Drive::GetLeftEncoder(){
 
 Encoder* Drive::GetRightEncoder(){
 	return rightEncoder;
+}
+
+ADXRS450_Gyro* Drive::GetDriveGyro(){
+	return driveGyro;
 }

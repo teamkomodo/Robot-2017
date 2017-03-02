@@ -14,6 +14,7 @@ void SwitchDriveReverse::Initialize() {
 void SwitchDriveReverse::Execute() {
 	//OI->retrieveOperatorInterface().toggleReverseDrive()
 	CommandBase::retrieveOperatorInterface()->toggleReverseDrive();
+	std::cout << "Test" << std::endl;
 	shouldStop = true;
 }
 

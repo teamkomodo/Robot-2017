@@ -23,19 +23,19 @@ void TurnDegrees::Initialize() {
 void TurnDegrees::Execute(float degreesToTurn, bool turnLeft) {
 		if (turnLeft){
 			if (driveSubsystem->GetLeftEncoderValue() < EncoderConverter::DegreesToEncoder(degreesToTurn) && driveSubsystem->GetRightEncoderValue() < EncoderConverter::DegreesToEncoder(degreesToTurn)){
-				driveSubsystem->Arcade(0, .45); // move forward for variable amount
+				driveSubsystem->Arcade(0, .45, 0); // move forward for variable amount
 			}
 			else{
-				driveSubsystem->Arcade(0, 0);
+				driveSubsystem->Arcade(0, 0, 0);
 				driveSubsystem->ResetLeftEncoder();
 				driveSubsystem->ResetRightEncoder();
 			}
 		}
 		else{ //turn right
 			if (driveSubsystem->GetLeftEncoderValue() > (-1 * EncoderConverter::DegreesToEncoder(degreesToTurn)) && driveSubsystem->GetRightEncoderValue() > (-1 * EncoderConverter::DegreesToEncoder(degreesToTurn))) {
-				driveSubsystem->Arcade(0, -.45); // move forward for variable amount
+				driveSubsystem->Arcade(0, -.45, 0); // move forward for variable amount
 			} else {
-				driveSubsystem->Arcade(0, 0);
+				driveSubsystem->Arcade(0, 0, 0);
 				driveSubsystem->ResetLeftEncoder();
 				driveSubsystem->ResetRightEncoder();
 			}
