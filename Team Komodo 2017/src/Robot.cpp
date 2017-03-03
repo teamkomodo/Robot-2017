@@ -51,11 +51,14 @@ private:
  * I'm going to add the camera to see if it will cause the code to fail
  */
 void Robot::RobotInit() {
+	SmartDashboard::PutNumber("gyroDriftValue", 0.035);
+	SmartDashboard::PutNumber("gyroRushSpeed", 30);
+	SmartDashboard::PutNumber("gyroScaleFactor", 0.11);
 //	Start camera streaming
-	CameraServer::GetInstance()->StartAutomaticCapture();
+	//CameraServer::GetInstance()->StartAutomaticCapture();
 //	make sure the resolution is high enough *this has not been tested
 //	camera.SetResolution(640, 480);
-	SmartDashboard::PutNumber("Drive Mode Input", 1);
+	//SmartDashboard::PutNumber("Drive Mode Input", 1);
 }
 
 /**
@@ -87,7 +90,7 @@ void Robot::AutonomousInit() {
  * Updates the robot when in the autonomous period.
  */
 void Robot::AutonomousPeriodic() {
-	Scheduler::GetInstance()->Run();
+
 }
 
 /**

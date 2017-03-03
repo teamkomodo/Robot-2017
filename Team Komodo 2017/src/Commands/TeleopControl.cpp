@@ -15,6 +15,8 @@ TeleopControl::TeleopControl() : CommandBase("TeleopControl") {
 
 // Called just before this Command runs the first time
 void TeleopControl::Initialize() {
+	driveSubsystem->ResetLeftEncoder();
+	driveSubsystem->ResetRightEncoder();
 	//SmartDashboard::PutNumber("Drive Mode (1=Tank 2=Arcade 3=Split Arcade)", 1);
 }
 // Called repeatedly when this Command is scheduled to run
@@ -22,6 +24,11 @@ void TeleopControl::Execute(){
 	//driveReverse is the state of the trigger
 	driveReverse = CommandBase::retrieveOperatorInterface()->isReverseDrive();
 	int driveMode = int(SmartDashboard::GetNumber("Drive Mode Input", 1));
+
+	double gyroDriftValue = SmartDashboard::GetNumber("gyroDriftValue", 0.01);
+	double gyroRushSpeed = SmartDashboard::GetNumber("gyroRushSpeed", 30);
+
+
 	int editedGyroAngle;
 
 	if (driveReverse){
@@ -30,13 +37,16 @@ void TeleopControl::Execute(){
 		SmartDashboard::PutString("ReverseDrive", "Normal");
 	}
 
-	if (fabs(driveGyro->GetRate()) > GYRO_DRIFT_VALUE && fabs(driveGyro->GetRate()) < GYRO_RUSH_SPEED) {
+	if (fabs(driveGyro->GetRate()) > gyroDriftValue && fabs(driveGyro->GetRate()) < gyroRushSpeed) {
 		editedGyroAngle = driveGyro->GetAngle();
-	} else {
+	}
+	std::cout << std::to_string(leftJoystick->GetRawAxis(GAMEPAD_1_STICK_X)) + " standard drift: " + std::to_string(JOYSTICK_STANDARD_DRIFT) << std::endl;
+
+	if(fabs(leftJoystick->GetRawAxis(GAMEPAD_1_STICK_X))>JOYSTICK_STANDARD_DRIFT){
 		driveGyro->Reset();
+		std::cout << "Gyro was reset" << std::endl;
 		editedGyroAngle = 0;
 	}
-
 
 	switch (driveMode){
 	case 1://tank drive

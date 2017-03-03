@@ -16,7 +16,8 @@ DriveForwardDistance::DriveForwardDistance(float inches) {
 
 // Called just before this Command runs the first time
 void DriveForwardDistance::Initialize() {
-
+	driveSubsystem->ResetLeftEncoder();
+	driveSubsystem->ResetRightEncoder();
 }
 
 // Called repeatedly when this Command is scheduled to run

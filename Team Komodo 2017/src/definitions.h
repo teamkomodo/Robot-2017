@@ -39,12 +39,13 @@
 
 #define LIFT_LIMIT_SWITCH_CHANNEL	6
 //other
-#define ENCODER_VALUES_PER_INCH		56.7//based on 4 inch wheels
+#define ENCODER_VALUES_PER_INCH		329.083//experimentally confirmed
 #define ROBOT_WIDTH_INCHES			23//confirmed
 #define HOPPER_MAXIMUM_ENCODER		200//wild guess
 
-#define JOYSTICK_STANDARD_DRIFT     0
-#define GYRO_SCALE_FACTOR 			0.8
+//gyro drive stuff
+#define JOYSTICK_STANDARD_DRIFT     .25
+#define GYRO_SCALE_FACTOR 			0.09
 #define GYRO_DRIFT_VALUE            0.01
 #define GYRO_RUSH_SPEED				30
 
