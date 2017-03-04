@@ -6,7 +6,7 @@
 Autonomous::Autonomous() {
 	//AddSequential(new WaitForDuration(5)); //In seconds! (with millisecond granularity)
 	//AddSequential(new LiftForDuration(2));
-	AddSequential(new DriveForwardDistance(112));
+	AddSequential(new DriveForwardDistance);
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
 	//      AddSequential(new Command2());

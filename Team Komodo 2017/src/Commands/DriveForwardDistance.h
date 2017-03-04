@@ -8,10 +8,12 @@
 class DriveForwardDistance : public CommandBase {
 private:
 	bool isDone = false;
-	int distanceInches;
+	double distanceInches;
+	int editedGyroAngle;
 	Drive* driveSubsystem;
+	ADXRS450_Gyro* driveGyro;
 public:
-	DriveForwardDistance(float inches);
+	DriveForwardDistance();
 	void Initialize();
 	void Execute();
 	bool IsFinished();

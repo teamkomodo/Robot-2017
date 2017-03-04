@@ -16,6 +16,7 @@
 #include "Commands/LiftWithGamepad.h"
 
 #include "Commands/ConveyorButtonControl.h"
+#include "Commands/DriveForwardDistance.h"
 
 
 /**
@@ -54,6 +55,7 @@ void Robot::RobotInit() {
 	SmartDashboard::PutNumber("gyroDriftValue", 0.035);
 	SmartDashboard::PutNumber("gyroRushSpeed", 30);
 	SmartDashboard::PutNumber("gyroScaleFactor", 0.11);
+	SmartDashboard::PutNumber("autonomousDistance", 66);
 //	Start camera streaming
 	//CameraServer::GetInstance()->StartAutomaticCapture();
 //	make sure the resolution is high enough *this has not been tested
@@ -82,7 +84,7 @@ void Robot::DisabledPeriodic() {
  *    Thus we don't need to stop the commands before autonomous.
  */
 void Robot::AutonomousInit() {
-	autonomousGroup.Start();
+	Scheduler::GetInstance()->AddCommand(new DriveForwardDistance);
 	std::cout << "Starting Autonomous" << std::endl;
 }
 
@@ -90,7 +92,7 @@ void Robot::AutonomousInit() {
  * Updates the robot when in the autonomous period.
  */
 void Robot::AutonomousPeriodic() {
-
+	Scheduler::GetInstance()->Run();
 }
 
 /**
@@ -101,6 +103,7 @@ void Robot::TeleopInit() {
 	// Experimentally confirmed 1/26/17 Max + Daniel
 	// Apparently you actually do, just don't put it in TeleopPeriodic
 	// or it will create a new TeleopControl object every 20 milliseconds 02/18/17 Max
+	Scheduler::GetInstance()->RemoveAll();
 	Scheduler::GetInstance()->AddCommand(new TeleopControl);
 	Scheduler::GetInstance()->AddCommand(new LiftWithGamepad);
 	Scheduler::GetInstance()->AddCommand(new HopperWithGamepad);
