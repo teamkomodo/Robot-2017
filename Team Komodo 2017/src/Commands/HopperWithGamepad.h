@@ -9,6 +9,7 @@ private:
 	Encoder *encoder;
 	Hopper* hopperSubsystem;
 	BallManipulator *ballManipulatorSubsystem;
+	bool hopperLimits = true;
 public:
 	HopperWithGamepad();
 	void Initialize();

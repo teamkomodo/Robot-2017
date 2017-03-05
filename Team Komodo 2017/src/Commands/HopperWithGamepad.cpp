@@ -13,16 +13,33 @@ HopperWithGamepad::HopperWithGamepad() {
 
 // Called just before this Command runs the first time
 void HopperWithGamepad::Initialize() {
-
+	encoder->Reset();
 }
 
 // Called repeatedly when this Command is scheduled to run
 void HopperWithGamepad::Execute() {
-	hopperSubsystem->run(gamePad->GetRawAxis(GAMEPAD_3_RSTICK_Y));
-	if (abs(gamePad->GetRawAxis(GAMEPAD_3_RSTICK_Y))>.2){
-		ballManipulatorSubsystem->runBackward();
+	if(gamePad->GetRawButton(10)){
+		if(gamePad->GetRawButton(2)){
+			hopperSubsystem->run(1);
+		}else if (gamePad->GetRawButton(3)){
+			hopperSubsystem->run(-1);
+		}
 	}else{
-		ballManipulatorSubsystem->stop();
+		if(gamePad->GetRawButton(2)){
+				if (encoder->GetRaw()< HOPPER_MAXIMUM_ENCODER){
+					hopperSubsystem->run(1);
+				}
+			}else if (gamePad->GetRawButton(3)){
+				if (encoder->GetRaw()> 410){
+					hopperSubsystem->run(-1);
+				}
+			}else{
+				hopperSubsystem->run(0);
+			}
+	}
+
+	if(gamePad->GetRawButton(9)){
+		encoder->Reset();
 	}
 	SmartDashboard::PutNumber("Hopper Encoder Value", encoder->GetRaw());
 }

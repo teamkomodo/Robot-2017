@@ -41,7 +41,7 @@
 //other
 #define ENCODER_VALUES_PER_INCH		329.083//experimentally confirmed
 #define ROBOT_WIDTH_INCHES			23//confirmed
-#define HOPPER_MAXIMUM_ENCODER		200//wild guess
+#define HOPPER_MAXIMUM_ENCODER		16000//experimentally confirmed
 
 //gyro drive stuff
 #define JOYSTICK_STANDARD_DRIFT     .25

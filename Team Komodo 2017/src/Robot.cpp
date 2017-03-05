@@ -57,7 +57,7 @@ void Robot::RobotInit() {
 	SmartDashboard::PutNumber("gyroScaleFactor", 0.11);
 	SmartDashboard::PutNumber("autonomousDistance", 66);
 //	Start camera streaming
-	//CameraServer::GetInstance()->StartAutomaticCapture();
+	CameraServer::GetInstance()->StartAutomaticCapture();
 //	make sure the resolution is high enough *this has not been tested
 //	camera.SetResolution(640, 480);
 	//SmartDashboard::PutNumber("Drive Mode Input", 1);
