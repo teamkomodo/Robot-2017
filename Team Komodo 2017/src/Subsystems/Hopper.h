@@ -12,6 +12,7 @@ class Hopper : public Subsystem {
 private:
 	VictorSP HopperMotor {HOPPER_OUTPUT_CHANNEL};
 	Encoder *HopperEncoder;
+	DigitalInput limitSwitch {HOPPER_LIMIT_SWITCH_CHANNEL};
 
 public:
 	Hopper();
@@ -19,6 +20,7 @@ public:
 
 	void run(float speed);
 	void stop();
+	bool isLimitSwitchPressed();
 	Encoder* getEncoder();
 };
 

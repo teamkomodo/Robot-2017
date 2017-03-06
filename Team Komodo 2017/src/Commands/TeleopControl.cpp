@@ -63,10 +63,10 @@ void TeleopControl::Execute(){
 		SmartDashboard::PutString("Drive Mode", "Arcade");
 		if(driveReverse){//if we're in reverse mode
 				//arcade drive in reverse using the left joystick
-				driveSubsystem->Arcade(-leftJoystick->GetRawAxis(GAMEPAD_1_STICK_Y), -leftJoystick->GetRawAxis(GAMEPAD_1_STICK_X), editedGyroAngle);
+				driveSubsystem->Arcade(-leftJoystick->GetRawAxis(GAMEPAD_1_STICK_Y), -JOYSTICK_X_CORRECTION*leftJoystick->GetRawAxis(GAMEPAD_1_STICK_X), editedGyroAngle);
 			}else{
 				//arcade drive forward using the left joystick
-				driveSubsystem->Arcade(leftJoystick->GetRawAxis(GAMEPAD_1_STICK_Y), -leftJoystick->GetRawAxis(GAMEPAD_1_STICK_X), editedGyroAngle);
+				driveSubsystem->Arcade(leftJoystick->GetRawAxis(GAMEPAD_1_STICK_Y), -JOYSTICK_X_CORRECTION*leftJoystick->GetRawAxis(GAMEPAD_1_STICK_X), editedGyroAngle);
 			}
 	break;
 	case 3://split arcade

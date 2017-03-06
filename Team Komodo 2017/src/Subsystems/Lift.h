@@ -9,7 +9,7 @@
 class Lift : public Subsystem {
 private:
 	VictorSP liftMotor {WINCH_OUTPUT_CHANNEL};
-	DigitalInput limitSwitch {LIFT_LIMIT_SWITCH_CHANNEL};
+	DigitalInput limitSwitch {HOPPER_LIMIT_SWITCH_CHANNEL};
 
 public:
 	Lift();

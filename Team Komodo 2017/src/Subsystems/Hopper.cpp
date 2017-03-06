@@ -27,3 +27,7 @@ void Hopper::stop() {
 Encoder* Hopper::getEncoder(){
 	return HopperEncoder;
 }
+
+bool Hopper::isLimitSwitchPressed(){
+	return limitSwitch.Get();
+}
