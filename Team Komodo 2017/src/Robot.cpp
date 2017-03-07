@@ -86,7 +86,7 @@ void Robot::DisabledPeriodic() {
  */
 void Robot::AutonomousInit() {
 	Scheduler::GetInstance()->RemoveAll();
-	//Scheduler::GetInstance()->AddCommand(new DriveForwardDistance);
+	Scheduler::GetInstance()->AddCommand(new DriveForwardDistance);
 	Scheduler::GetInstance()->AddCommand(new ResetHopper);
 	std::cout << "Starting Autonomous" << std::endl;
 }
