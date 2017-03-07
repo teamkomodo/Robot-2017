@@ -85,7 +85,8 @@ void Robot::DisabledPeriodic() {
  *    Thus we don't need to stop the commands before autonomous.
  */
 void Robot::AutonomousInit() {
-	Scheduler::GetInstance()->AddCommand(new DriveForwardDistance);
+	Scheduler::GetInstance()->RemoveAll();
+	//Scheduler::GetInstance()->AddCommand(new DriveForwardDistance);
 	Scheduler::GetInstance()->AddCommand(new ResetHopper);
 	std::cout << "Starting Autonomous" << std::endl;
 }

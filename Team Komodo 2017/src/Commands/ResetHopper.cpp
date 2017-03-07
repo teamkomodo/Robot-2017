@@ -16,10 +16,12 @@ ResetHopper::ResetHopper() : CommandBase("ResetHopper") {
 // Called just before this Command runs the first time
 void ResetHopper::Initialize() {
 	step = 1;
+	hopperSubsystem->getEncoder()->Reset();//reset the encoder
 }
 
 // Called repeatedly when this Command is scheduled to run
 void ResetHopper::Execute() {
+	SmartDashboard::PutNumber("Hopper Encoder Value", hopperSubsystem->getEncoder()->GetRaw());
 	switch(step){
 	case 1:
 		if (hopperSubsystem->isLimitSwitchPressed()){//if the limit switched is pressed
@@ -31,7 +33,7 @@ void ResetHopper::Execute() {
 		}
 	break;
 	case 2:
-		if (fabs(hopperSubsystem->getEncoder()->GetRaw())<HOPPER_MAXIMUM_ENCODER){//if the hopper encoder value is less than the maximum
+		if (hopperSubsystem->getEncoder()->GetRaw()>-HOPPER_MAXIMUM_ENCODER){//if the hopper encoder value is less than the maximum
 			hopperSubsystem->run(-.75);//run the hopper at 3/4 speed backward
 		}else{//if the encoder has reached the maximum value
 			hopperSubsystem->run(0);//stop the motor

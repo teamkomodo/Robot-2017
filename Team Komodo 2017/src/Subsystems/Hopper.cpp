@@ -7,6 +7,7 @@
 
 Hopper::Hopper() : Subsystem("Hopper") {
 	HopperEncoder = new Encoder(HOPPER_ENCODER_CHANNEL_A, HOPPER_ENCODER_CHANNEL_B);
+
 }
 
 void Hopper::InitDefaultCommand() {
@@ -29,5 +30,5 @@ Encoder* Hopper::getEncoder(){
 }
 
 bool Hopper::isLimitSwitchPressed(){
-	return limitSwitch.Get();
+	return limitSwitch.GetValue()>1000;
 }
