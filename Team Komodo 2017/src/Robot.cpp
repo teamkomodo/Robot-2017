@@ -14,6 +14,7 @@
 #include "Commands/TeleopControl.h"
 #include "Commands/HopperWithGamepad.h"
 #include "Commands/LiftWithGamepad.h"
+#include "Commands/ResetHopper.h"
 
 #include "Commands/ConveyorButtonControl.h"
 #include "Commands/DriveForwardDistance.h"
@@ -57,10 +58,10 @@ void Robot::RobotInit() {
 	SmartDashboard::PutNumber("gyroScaleFactor", 0.11);
 	SmartDashboard::PutNumber("autonomousDistance", 66);
 //	Start camera streaming
-	CameraServer::GetInstance()->StartAutomaticCapture();
+	cs::UsbCamera camera = CameraServer::GetInstance()->StartAutomaticCapture();
 //	make sure the resolution is high enough *this has not been tested
-//	camera.SetResolution(640, 480);
-	//SmartDashboard::PutNumber("Drive Mode Input", 1);
+	camera.SetResolution(896, 504);
+//	SmartDashboard::PutNumber("Drive Mode Input", 1);
 }
 
 /**
@@ -84,7 +85,9 @@ void Robot::DisabledPeriodic() {
  *    Thus we don't need to stop the commands before autonomous.
  */
 void Robot::AutonomousInit() {
+	Scheduler::GetInstance()->RemoveAll();
 	Scheduler::GetInstance()->AddCommand(new DriveForwardDistance);
+	Scheduler::GetInstance()->AddCommand(new ResetHopper);
 	std::cout << "Starting Autonomous" << std::endl;
 }
 

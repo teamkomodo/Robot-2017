@@ -7,6 +7,8 @@
 #define GAMEPAD_2_INPUT_CHANNEL		1
 #define GAMEPAD_1_INPUT_CHANNEL		0
 
+#define JOYSTICK_X_CORRECTION		.75
+
 #define GAMEPAD_1_STICK_X			0
 #define GAMEPAD_1_STICK_Y			1
 
@@ -18,6 +20,13 @@
 
 #define GAMEPAD_3_RSTICK_X			4
 #define GAMEPAD_3_RSTICK_Y			5
+
+#define DOLPHIN_Y_BUTTON			4
+#define DOLPHIN_X_BUTTON			3
+#define DOLPHIN_B_BUTTON			2
+#define DOLPHIN_A_BUTTON			1
+#define DOLPHIN_LEFT_STICK_BUTTON	9
+#define DOLPHIN_RIGHT_STICK_BUTTON	10
 
 #define DRIVE_MODE					2//1 = tank, 2 = arcade 3 = split arcade
 
@@ -37,7 +46,7 @@
 #define HOPPER_ENCODER_CHANNEL_A	4
 #define HOPPER_ENCODER_CHANNEL_B	5
 
-#define LIFT_LIMIT_SWITCH_CHANNEL	6
+#define HOPPER_LIMIT_SWITCH_CHANNEL	3
 //other
 #define ENCODER_VALUES_PER_INCH		329.083//experimentally confirmed
 #define ROBOT_WIDTH_INCHES			23//confirmed
@@ -45,7 +54,7 @@
 
 //gyro drive stuff
 #define JOYSTICK_STANDARD_DRIFT     .25
-#define GYRO_SCALE_FACTOR 			0.09
+#define GYRO_SCALE_FACTOR 			0.00	//was .09
 #define GYRO_DRIFT_VALUE            0.01
 #define GYRO_RUSH_SPEED				30
 
