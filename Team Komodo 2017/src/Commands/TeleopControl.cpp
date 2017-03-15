@@ -41,9 +41,9 @@ void TeleopControl::Execute(){
 	if (fabs(driveGyro->GetRate()) > gyroDriftValue && fabs(driveGyro->GetRate()) < gyroRushSpeed) {
 		editedGyroAngle = driveGyro->GetAngle();
 	}
-	std::cout << std::to_string(leftJoystick->GetRawAxis(GAMEPAD_1_STICK_X)) + " standard drift: " + std::to_string(JOYSTICK_STANDARD_DRIFT) << std::endl;
+	std::cout << std::to_string(leftJoystick->GetRawAxis(LEFT_JOYSTICK_STICK_X)) + " standard drift: " + std::to_string(JOYSTICK_STANDARD_DRIFT) << std::endl;
 
-	if(fabs(leftJoystick->GetRawAxis(GAMEPAD_1_STICK_X))>JOYSTICK_STANDARD_DRIFT){
+	if(fabs(leftJoystick->GetRawAxis(LEFT_JOYSTICK_STICK_X))>JOYSTICK_STANDARD_DRIFT){
 		driveGyro->Reset();
 		std::cout << "Gyro was reset" << std::endl;
 		editedGyroAngle = 0;
@@ -54,20 +54,20 @@ void TeleopControl::Execute(){
 		SmartDashboard::PutString("Drive Mode", "Tank");
 		if(driveReverse){//if we're in reverse mode
 			//tank drive in reverse using the left and right joysticks
-			driveSubsystem->Tank(-rightJoystick->GetRawAxis(GAMEPAD_1_STICK_Y), -leftJoystick->GetRawAxis(GAMEPAD_2_STICK_Y));
+			driveSubsystem->Tank(-rightJoystick->GetRawAxis(RIGHT_JOYSTICK_STICK_Y), -leftJoystick->GetRawAxis(RIGHT_JOYSTICK_STICK_Y));
 			}else{
 				//tank drive forward using the left and right joysticks
-			driveSubsystem->Tank(leftJoystick->GetRawAxis(GAMEPAD_1_STICK_Y), rightJoystick->GetRawAxis(GAMEPAD_2_STICK_Y));
+			driveSubsystem->Tank(leftJoystick->GetRawAxis(RIGHT_JOYSTICK_STICK_Y), rightJoystick->GetRawAxis(RIGHT_JOYSTICK_STICK_Y));
 			}
 	break;
 	case 2://arcade
 		SmartDashboard::PutString("Drive Mode", "Arcade");
 		if(driveReverse){//if we're in reverse mode
 				//arcade drive in reverse using the left joystick
-				driveSubsystem->Arcade(-leftJoystick->GetRawAxis(GAMEPAD_1_STICK_Y), -JOYSTICK_X_CORRECTION*leftJoystick->GetRawAxis(GAMEPAD_1_STICK_X), editedGyroAngle);
+				driveSubsystem->Arcade(-leftJoystick->GetRawAxis(RIGHT_JOYSTICK_STICK_Y), -JOYSTICK_X_CORRECTION*leftJoystick->GetRawAxis(LEFT_JOYSTICK_STICK_X), editedGyroAngle);
 			}else{
 				//arcade drive forward using the left joystick
-				driveSubsystem->Arcade(leftJoystick->GetRawAxis(GAMEPAD_1_STICK_Y), -JOYSTICK_X_CORRECTION*leftJoystick->GetRawAxis(GAMEPAD_1_STICK_X), editedGyroAngle);
+				driveSubsystem->Arcade(leftJoystick->GetRawAxis(RIGHT_JOYSTICK_STICK_Y), -JOYSTICK_X_CORRECTION*leftJoystick->GetRawAxis(LEFT_JOYSTICK_STICK_X), editedGyroAngle);
 			}
 	break;
 	case 3://split arcade
@@ -75,10 +75,10 @@ void TeleopControl::Execute(){
 		SmartDashboard::PutString("Drive Mode", "Split Arcade");
 		if(driveReverse){//if we're in reverse mode
 			//drive in reverse using split arcade (forward motion controlled by left gamepad y axis, turn controlled by right gamepad x axis)
-			driveSubsystem->Arcade(-leftJoystick->GetRawAxis(GAMEPAD_1_STICK_Y), -rightJoystick->GetRawAxis(GAMEPAD_2_STICK_X), editedGyroAngle);
+			driveSubsystem->Arcade(-leftJoystick->GetRawAxis(RIGHT_JOYSTICK_STICK_Y), -rightJoystick->GetRawAxis(RIGHT_JOYSTICK_STICK_X), editedGyroAngle);
 		}else{
 			//drive forward using split arcade (forward motion controlled by left gamepad y axis, turn controlled by right gamepad x axis)
-			driveSubsystem->Arcade(leftJoystick->GetRawAxis(GAMEPAD_1_STICK_Y), -rightJoystick->GetRawAxis(GAMEPAD_2_STICK_X), editedGyroAngle);
+			driveSubsystem->Arcade(leftJoystick->GetRawAxis(RIGHT_JOYSTICK_STICK_Y), -rightJoystick->GetRawAxis(RIGHT_JOYSTICK_STICK_X), editedGyroAngle);
 		}
 	break;
 	}

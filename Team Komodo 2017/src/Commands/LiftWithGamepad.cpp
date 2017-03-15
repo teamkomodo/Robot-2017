@@ -21,7 +21,7 @@ void LiftWithGamepad::Execute() {
 	//if(lifterSubsystem->isLimitSwitchPressed()){//if the limit switch is pressed, stop the motor
 	//	lifterSubsystem->setSpeed(0);
 	//}else{
-		lifterSubsystem->setSpeed(gamePad->GetRawAxis(GAMEPAD_3_LSTICK_Y));//otherwise control it with the joystick
+		lifterSubsystem->setSpeed(gamePad->GetRawAxis(DOLPHIN_LSTICK_Y));//otherwise control it with the joystick
 	//}
 }
 
