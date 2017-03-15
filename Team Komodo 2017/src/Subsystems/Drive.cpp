@@ -37,11 +37,11 @@ void Drive::Right(double amt) {
 void Drive::Arcade(double speed, double turn, double editedGyroAngle) {
 	// sstd::cout << "Angle: " + std::to_string(editedGyroAngle) << std::endl;
 	SmartDashboard::PutNumber("Gyro Angle", editedGyroAngle);
-	double gyroScaleFactor = SmartDashboard::GetNumber("gyroScaleFactor", 0.1);
+	double gyroScaleFactor = SmartDashboard::GetNumber("gyroScaleFactor", .1);
 	if (fabs(turn) > JOYSTICK_STANDARD_DRIFT) {
 		drive.ArcadeDrive(speed, turn);
 	} else {
-		std::cout << "using editedangle" + std::to_string(gyroScaleFactor) + " angle: " + std::to_string(editedGyroAngle) << std::endl;
+		std::cout << "using edited angle" + std::to_string(gyroScaleFactor) + " angle: " + std::to_string(editedGyroAngle) << std::endl;
 		drive.ArcadeDrive(speed, editedGyroAngle * gyroScaleFactor);
 	}
 	// std::cout << "Speed:"+std::to_string(speed) + " Turn:"+std::to_string(turn) << std::endl;

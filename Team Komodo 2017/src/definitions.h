@@ -7,7 +7,7 @@
 #define GAMEPAD_2_INPUT_CHANNEL		1
 #define GAMEPAD_1_INPUT_CHANNEL		0
 
-#define JOYSTICK_X_CORRECTION		.75
+#define JOYSTICK_X_CORRECTION		1
 
 #define GAMEPAD_1_STICK_X			0
 #define GAMEPAD_1_STICK_Y			1
@@ -54,7 +54,7 @@
 
 //gyro drive stuff
 #define JOYSTICK_STANDARD_DRIFT     .25
-#define GYRO_SCALE_FACTOR 			0.00	//was .09
+#define GYRO_SCALE_FACTOR 			0.1	//was .09
 #define GYRO_DRIFT_VALUE            0.01
 #define GYRO_RUSH_SPEED				30
 
