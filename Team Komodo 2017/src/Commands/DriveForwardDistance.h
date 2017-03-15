@@ -8,13 +8,12 @@
 class DriveForwardDistance : public CommandBase {
 private:
 	bool isDone = false;
-	double distanceInches;
-	double reverseDistanceInches;
-	double secondDistanceInches;
+	//distances are now in definitions.h
+
 	int autoStep;
-	double waitTime;
 	int editedGyroAngle;
 	int autoPosition;
+
 	Drive* driveSubsystem;
 	ADXRS450_Gyro* driveGyro;
 public:
