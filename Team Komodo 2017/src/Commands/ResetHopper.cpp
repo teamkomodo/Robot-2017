@@ -29,12 +29,12 @@ void ResetHopper::Execute() {
 			hopperSubsystem->getEncoder()->Reset();//reset the encoder
 			step = 2;//go on to the next step
 		}else{//if the limit switch isn't pressed
-			hopperSubsystem->run(.75);//run the hopper at 3/4 speed forward
+			hopperSubsystem->run(.9);//run the hopper at 3/4 speed forward
 		}
 	break;
 	case 2:
 		if (hopperSubsystem->getEncoder()->GetRaw()>-HOPPER_MAXIMUM_ENCODER){//if the hopper encoder value is less than the maximum
-			hopperSubsystem->run(-.75);//run the hopper at 3/4 speed backward
+			hopperSubsystem->run(-.9);//run the hopper at 3/4 speed backward
 		}else{//if the encoder has reached the maximum value
 			hopperSubsystem->run(0);//stop the motor
 			hopperSubsystem->getEncoder()->Reset();//reset the encoder

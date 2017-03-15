@@ -9,6 +9,9 @@ class DriveForwardDistance : public CommandBase {
 private:
 	bool isDone = false;
 	double distanceInches;
+	double reverseDistanceInches;
+	int autoCount;
+	double waitTime;
 	int editedGyroAngle;
 	Drive* driveSubsystem;
 	ADXRS450_Gyro* driveGyro;
