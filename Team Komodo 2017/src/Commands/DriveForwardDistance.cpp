@@ -4,7 +4,6 @@
  */
 #include "DriveForwardDistance.h"
 #include "OI.h"
-#include "EncoderConverter.h"
 #include "WPIlib.h"
 
 DriveForwardDistance::DriveForwardDistance() : CommandBase("DriveForwardDistance") {

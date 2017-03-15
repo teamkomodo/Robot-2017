@@ -4,7 +4,6 @@
  */
 #include "ResetHopper.h"
 #include "OI.h"
-#include "EncoderConverter.h"
 
 ResetHopper::ResetHopper() : CommandBase("ResetHopper") {
 	// Use Requires() here to declare subsystem dependencies
