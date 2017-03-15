@@ -10,7 +10,7 @@ private:
 	bool isDone = false;
 	double distanceInches;
 	double reverseDistanceInches;
-	int autoCount;
+	int autoStep;
 	double waitTime;
 	int editedGyroAngle;
 	Drive* driveSubsystem;

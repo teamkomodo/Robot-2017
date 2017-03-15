@@ -11,12 +11,13 @@ DriveForwardDistance::DriveForwardDistance() : CommandBase("DriveForwardDistance
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
 	Requires(CommandBase::retrieveDriveSubsystem());
-	distanceInches = 150; // was 100
-	reverseDistanceInches = 20;
-	autoCount = 1;
-	waitTime = 3; //was 3
 	driveSubsystem = CommandBase::retrieveDriveSubsystem();
 	driveGyro = driveSubsystem->GetDriveGyro();
+
+	distanceInches = 150; // originally 100
+	reverseDistanceInches = 20;//originally 20
+	autoStep = 1;
+	waitTime = 3; //originally 3
 	editedGyroAngle = 0;
 }
 
@@ -36,47 +37,43 @@ void DriveForwardDistance::Execute() {
 		driveGyro->Reset();
 		editedGyroAngle = 0;
 	}
-	SmartDashboard::PutNumber("Auto count", autoCount);
+	SmartDashboard::PutNumber("Auto Step", autoStep);
 	SmartDashboard::PutNumber("Gyro Angle", driveGyro->GetAngle());
 	SmartDashboard::PutNumber("Gyro Rate", driveGyro->GetRate());
 	SmartDashboard::PutNumber("Left Encoder Value", driveSubsystem->GetLeftEncoderValue());
 	SmartDashboard::PutNumber("Right Encoder Value", driveSubsystem->GetRightEncoderValue());
-	//if (fabs(driveSubsystem->GetLeftEncoderValue()) < EncoderConverter::InchesToEncoder(distanceInches)
-	//  && fabs(driveSubsystem->GetRightEncoderValue()) < EncoderConverter::InchesToEncoder(distanceInches)){
-if (autoCount == 1){
-
-	if (fabs(driveSubsystem->GetLeftEncoderValue()*-1) < distanceInches * ENCODER_VALUES_PER_INCH
-		|| fabs(driveSubsystem->GetRightEncoderValue()*-1) < distanceInches * ENCODER_VALUES_PER_INCH){
+	switch(autoStep){
+	case 1://first stage
+		if (fabs(driveSubsystem->GetLeftEncoderValue()*-1) < distanceInches * ENCODER_VALUES_PER_INCH
+				|| fabs(driveSubsystem->GetRightEncoderValue()*-1) < distanceInches * ENCODER_VALUES_PER_INCH){
 			driveSubsystem->Arcade(-.75, 0.0, editedGyroAngle);	//was .75
 		} else {
 			driveSubsystem->ResetRightEncoder();
 			driveSubsystem->ResetLeftEncoder();
 			driveGyro->Reset();
 			driveSubsystem->Arcade(0,0, 0);
-			//Wait(waitTime);
+			Wait(waitTime);
 			driveSubsystem->ResetRightEncoder();
 			driveSubsystem->ResetLeftEncoder();
-			//autoCount = 2;
-			isDone = true;
-
+			autoStep = 2;
 		}
+	break;
+	case 2://second stage
+		if(fabs(driveSubsystem->GetLeftEncoderValue()) < reverseDistanceInches * ENCODER_VALUES_PER_INCH
+				|| fabs(driveSubsystem->GetRightEncoderValue()) < reverseDistanceInches * ENCODER_VALUES_PER_INCH){
+			driveSubsystem->Arcade(.8, 0.0, editedGyroAngle);	//was .75
+		}else {
+			driveSubsystem->ResetRightEncoder();
+			driveSubsystem->ResetLeftEncoder();
+			driveSubsystem->Arcade(0,0, 0);
+			isDone = true;
+		}
+	break;
+	default:
+		driveSubsystem->Arcade(0,0, 0);
+	break;
+	}
 }
-
-else if (autoCount == 2){
-	if(fabs(driveSubsystem->GetLeftEncoderValue()) < reverseDistanceInches * ENCODER_VALUES_PER_INCH
-		|| fabs(driveSubsystem->GetRightEncoderValue()) < reverseDistanceInches * ENCODER_VALUES_PER_INCH){
-				driveSubsystem->Arcade(.8, 0.0, editedGyroAngle);	//was .75
-			}
-	else {
-				driveSubsystem->ResetRightEncoder();
-				driveSubsystem->ResetLeftEncoder();
-				driveSubsystem->Arcade(0,0, 0);
-				//Wait(20);
-				isDone = true;
-
-			}
-			}
-			}
 
 
 
