@@ -29,6 +29,7 @@ void TeleopControl::Execute(){
 	double gyroRushSpeed = SmartDashboard::GetNumber("gyroRushSpeed", 30);
 
 
+
 	int editedGyroAngle;
 
 	if (driveReverse){
@@ -53,10 +54,10 @@ void TeleopControl::Execute(){
 		SmartDashboard::PutString("Drive Mode", "Tank");
 		if(driveReverse){//if we're in reverse mode
 			//tank drive in reverse using the left and right joysticks
-				driveSubsystem->Tank(leftJoystick->GetRawAxis(GAMEPAD_1_STICK_Y), rightJoystick->GetRawAxis(GAMEPAD_2_STICK_Y));
+			driveSubsystem->Tank(-rightJoystick->GetRawAxis(GAMEPAD_1_STICK_Y), -leftJoystick->GetRawAxis(GAMEPAD_2_STICK_Y));
 			}else{
 				//tank drive forward using the left and right joysticks
-				driveSubsystem->Tank(-rightJoystick->GetRawAxis(GAMEPAD_1_STICK_Y), -leftJoystick->GetRawAxis(GAMEPAD_2_STICK_Y));
+			driveSubsystem->Tank(leftJoystick->GetRawAxis(GAMEPAD_1_STICK_Y), rightJoystick->GetRawAxis(GAMEPAD_2_STICK_Y));
 			}
 	break;
 	case 2://arcade
