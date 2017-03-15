@@ -57,6 +57,7 @@ void Robot::RobotInit() {
 	SmartDashboard::PutNumber("gyroRushSpeed", 30);
 	SmartDashboard::PutNumber("gyroScaleFactor", 0.11);
 	SmartDashboard::PutNumber("autonomousDistance", 66);
+	SmartDashboard::PutNumber("autonomousPosition (1=left 2=center 3=right", CENTER_POSITION);
 //	Start camera streaming
 	cs::UsbCamera camera = CameraServer::GetInstance()->StartAutomaticCapture();
 //	make sure the resolution is high enough *this has not been tested

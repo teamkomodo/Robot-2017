@@ -10,9 +10,11 @@ private:
 	bool isDone = false;
 	double distanceInches;
 	double reverseDistanceInches;
+	double secondDistanceInches;
 	int autoStep;
 	double waitTime;
 	int editedGyroAngle;
+	int autoPosition;
 	Drive* driveSubsystem;
 	ADXRS450_Gyro* driveGyro;
 public:

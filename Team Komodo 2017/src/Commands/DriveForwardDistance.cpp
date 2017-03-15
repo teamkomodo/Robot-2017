@@ -14,9 +14,11 @@ DriveForwardDistance::DriveForwardDistance() : CommandBase("DriveForwardDistance
 	driveSubsystem = CommandBase::retrieveDriveSubsystem();
 	driveGyro = driveSubsystem->GetDriveGyro();
 
+	autoPosition = SmartDashboard::GetNumber("autonomousPosition (1=left 2=center 3=right", CENTER_POSITION);
 	distanceInches = 150; // originally 100
 	reverseDistanceInches = 20;//originally 20
-	autoStep = 1;
+	secondDistanceInches = 20;//we need to determine this
+	autoStep = DRIVE_FORWARD_BEFORE_TURN;
 	waitTime = 3; //originally 3
 	editedGyroAngle = 0;
 }
@@ -43,7 +45,7 @@ void DriveForwardDistance::Execute() {
 	SmartDashboard::PutNumber("Left Encoder Value", driveSubsystem->GetLeftEncoderValue());
 	SmartDashboard::PutNumber("Right Encoder Value", driveSubsystem->GetRightEncoderValue());
 	switch(autoStep){
-	case 1://first stage
+	case DRIVE_FORWARD_BEFORE_TURN://drive forward
 		if (fabs(driveSubsystem->GetLeftEncoderValue()*-1) < distanceInches * ENCODER_VALUES_PER_INCH
 				|| fabs(driveSubsystem->GetRightEncoderValue()*-1) < distanceInches * ENCODER_VALUES_PER_INCH){
 			driveSubsystem->Arcade(-.75, 0.0, editedGyroAngle);	//was .75
@@ -55,22 +57,52 @@ void DriveForwardDistance::Execute() {
 			Wait(waitTime);
 			driveSubsystem->ResetRightEncoder();
 			driveSubsystem->ResetLeftEncoder();
-			autoStep = 2;
+			//move on to the next step based on which peg we're going for
+			if (autoPosition == CENTER_POSITION){//if we're going for the center peg
+				autoStep = DRIVE_BACKWARD;//we don't need to turn, just back up
+			}else if(autoPosition == RIGHT_POSITION){//if we're going for the the right peg
+				autoStep = TURN_LEFT;//we need to turn left towards it
+			}else if (autoPosition == LEFT_POSITION){//if we're going for the left peg
+				autoStep = TURN_RIGHT;//we need to turn right
+			}
 		}
 	break;
-	case 2://second stage
+	case DRIVE_BACKWARD://drive backward
 		if(fabs(driveSubsystem->GetLeftEncoderValue()) < reverseDistanceInches * ENCODER_VALUES_PER_INCH
 				|| fabs(driveSubsystem->GetRightEncoderValue()) < reverseDistanceInches * ENCODER_VALUES_PER_INCH){
 			driveSubsystem->Arcade(.8, 0.0, editedGyroAngle);	//was .75
 		}else {
-			driveSubsystem->ResetRightEncoder();
-			driveSubsystem->ResetLeftEncoder();
 			driveSubsystem->Arcade(0,0, 0);
-			isDone = true;
+			autoStep = STOP;
 		}
 	break;
+	case TURN_LEFT://turn left
+		//turn left
+		autoStep = DRIVE_FORWARD_AFTER_TURN;//then go forward again
+	break;
+	case TURN_RIGHT://turn right
+		//turn right
+		autoStep = DRIVE_FORWARD_AFTER_TURN;//then go forward again
+	break;
+	case DRIVE_FORWARD_AFTER_TURN://drive forward again
+		if (fabs(driveSubsystem->GetLeftEncoderValue()*-1) < secondDistanceInches * ENCODER_VALUES_PER_INCH
+						|| fabs(driveSubsystem->GetRightEncoderValue()*-1) < secondDistanceInches * ENCODER_VALUES_PER_INCH){
+					driveSubsystem->Arcade(-.75, 0.0, editedGyroAngle);	//was .75
+				} else {
+					driveSubsystem->ResetRightEncoder();
+					driveSubsystem->ResetLeftEncoder();
+					driveGyro->Reset();
+					driveSubsystem->Arcade(0,0, 0);
+					Wait(waitTime);
+					driveSubsystem->ResetRightEncoder();
+					driveSubsystem->ResetLeftEncoder();
+					autoStep = DRIVE_BACKWARD;//drive backward
+				}
+	break;
+	case STOP://stop
 	default:
 		driveSubsystem->Arcade(0,0, 0);
+		isDone = true;
 	break;
 	}
 }

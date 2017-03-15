@@ -47,6 +47,18 @@
 #define HOPPER_ENCODER_CHANNEL_B	5
 
 #define HOPPER_LIMIT_SWITCH_CHANNEL	3
+//autonomous steps
+#define DRIVE_FORWARD_BEFORE_TURN	1
+#define TURN_LEFT					2
+#define TURN_RIGHT					3
+#define DRIVE_FORWARD_AFTER_TURN	4
+#define DRIVE_BACKWARD				5
+#define STOP						6
+
+//autonomous positions
+#define LEFT_POSITION				1
+#define CENTER_POSITION				2
+#define RIGHT_POSITION				3
 //other
 #define ENCODER_VALUES_PER_INCH		329.083//experimentally confirmed
 #define ROBOT_WIDTH_INCHES			23//confirmed
