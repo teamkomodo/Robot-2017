@@ -1,6 +1,6 @@
 # Team Komodo 2017
 
-This repository contains the code for Team Komodo's 2017 Robot code. Most of this information in also in Discord, but it's getting hard to find everything and there isn't a place for shared common knowledge.
+This repository contains Team Komodo's 2017 Robot code. Most of this information in also in Discord, but it's getting hard to find everything and there isn't a place for shared common knowledge.
 
 This document is split into four main parts:
 
