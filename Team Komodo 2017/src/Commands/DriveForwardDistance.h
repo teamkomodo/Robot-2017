@@ -23,6 +23,8 @@ public:
 	bool IsFinished();
 	void End();
 	void Interrupted();
+	double DriveForwardDistance::inchesToEncoders(double inches);
+	double DriveForwardDistance::degreesToEncoders(double degrees)
 };
 
 #endif  // DriveForwardDistance_H
