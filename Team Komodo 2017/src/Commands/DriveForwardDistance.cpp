@@ -97,27 +97,44 @@ void DriveForwardDistance::Execute() {
 	case TURN_LEFT://turn left
 		//if the encoders haven't reached the right value
 		if (fabs(driveSubsystem->GetLeftEncoderValue()) < degreesToEncoders(TURN_DEGREES)
-						|| fabs(driveSubsystem->GetRightEncoderValue()) < degreesToEncoders(TURN_DEGREES)){
-					//turn
-					driveSubsystem->Arcade(0, -0.75, editedGyroAngle);
-				} else {//if the encoders have reached the right values
-					//reset encoders and gyros
-					driveSubsystem->ResetRightEncoder();
-					driveSubsystem->ResetLeftEncoder();
-					driveGyro->Reset();
-					//stop the robot
-					driveSubsystem->Arcade(0,0, 0);
-					//wait
-					Wait(WAIT_TIME);
-					driveSubsystem->ResetRightEncoder();
-					driveSubsystem->ResetLeftEncoder();
-					//go to the next step
-					autoStep = DRIVE_FORWARD_AFTER_TURN;
-				}
+					|| fabs(driveSubsystem->GetRightEncoderValue()) < degreesToEncoders(TURN_DEGREES)){
+			//turn
+			driveSubsystem->Arcade(0, -0.75, editedGyroAngle);
+		} else {//if the encoders have reached the right values
+			//reset encoders and gyros
+			driveSubsystem->ResetRightEncoder();
+			driveSubsystem->ResetLeftEncoder();
+			driveGyro->Reset();
+			//stop the robot
+			driveSubsystem->Arcade(0,0, 0);
+			//wait
+			Wait(WAIT_TIME);
+			driveSubsystem->ResetRightEncoder();
+			driveSubsystem->ResetLeftEncoder();
+			//go to the next step
+			autoStep = DRIVE_FORWARD_AFTER_TURN;
+		}
 	break;
 	case TURN_RIGHT://turn right
-		//turn right
-		autoStep = DRIVE_FORWARD_AFTER_TURN;//then go forward again
+		//if the encoders haven't reached the right value
+		if (fabs(driveSubsystem->GetLeftEncoderValue()) < degreesToEncoders(TURN_DEGREES)
+				|| fabs(driveSubsystem->GetRightEncoderValue()) < degreesToEncoders(TURN_DEGREES)){
+			//turn
+			driveSubsystem->Arcade(0, 0.75, editedGyroAngle);
+		} else {//if the encoders have reached the right values
+			//reset encoders and gyros
+			driveSubsystem->ResetRightEncoder();
+			driveSubsystem->ResetLeftEncoder();
+			driveGyro->Reset();
+			//stop the robot
+			driveSubsystem->Arcade(0,0, 0);
+			//wait
+			Wait(WAIT_TIME);
+			driveSubsystem->ResetRightEncoder();
+			driveSubsystem->ResetLeftEncoder();
+			//go to the next step
+			autoStep = DRIVE_FORWARD_AFTER_TURN;
+		}
 	break;
 	case DRIVE_FORWARD_AFTER_TURN://drive forward again
 		//if we haven't reached the desired encoder values
