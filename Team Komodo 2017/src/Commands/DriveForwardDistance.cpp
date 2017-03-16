@@ -54,16 +54,14 @@ void DriveForwardDistance::Execute() {
 			//drive forward
 			driveSubsystem->Arcade(-.75, 0.0, editedGyroAngle);	//was .75
 		} else {//if the encoders have reached the values
-			//reset encoders and gyro
-			driveSubsystem->ResetRightEncoder();
-			driveSubsystem->ResetLeftEncoder();
-			driveGyro->Reset();
 			//stop the robot
 			driveSubsystem->Arcade(0,0, 0);
 			//wait
 			Wait(WAIT_TIME);
+			//reset encoders and gyro
 			driveSubsystem->ResetRightEncoder();
 			driveSubsystem->ResetLeftEncoder();
+			driveGyro->Reset();
 			//move on to the next step based on which peg we're going for
 			if (autoPosition == CENTER_POSITION){
 				//if we're going for the center peg
@@ -100,16 +98,14 @@ void DriveForwardDistance::Execute() {
 			//turn
 			driveSubsystem->Arcade(0, -0.75, editedGyroAngle);
 		} else {//if the encoders have reached the right values
-			//reset encoders and gyros
-			driveSubsystem->ResetRightEncoder();
-			driveSubsystem->ResetLeftEncoder();
-			driveGyro->Reset();
 			//stop the robot
 			driveSubsystem->Arcade(0,0, 0);
 			//wait
 			Wait(WAIT_TIME);
+			//reset encoders and gyro
 			driveSubsystem->ResetRightEncoder();
 			driveSubsystem->ResetLeftEncoder();
+			driveGyro->Reset();
 			//go to the next step
 			autoStep = DRIVE_FORWARD_AFTER_TURN;
 		}
@@ -121,16 +117,14 @@ void DriveForwardDistance::Execute() {
 			//turn
 			driveSubsystem->Arcade(0, 0.75, editedGyroAngle);
 		} else {//if the encoders have reached the right values
-			//reset encoders and gyros
-			driveSubsystem->ResetRightEncoder();
-			driveSubsystem->ResetLeftEncoder();
-			driveGyro->Reset();
 			//stop the robot
 			driveSubsystem->Arcade(0,0, 0);
 			//wait
 			Wait(WAIT_TIME);
+			//reset encoders and gyro
 			driveSubsystem->ResetRightEncoder();
 			driveSubsystem->ResetLeftEncoder();
+			driveGyro->Reset();
 			//go to the next step
 			autoStep = DRIVE_FORWARD_AFTER_TURN;
 		}
@@ -142,16 +136,14 @@ void DriveForwardDistance::Execute() {
 			//drive forward
 			driveSubsystem->Arcade(-.75, 0.0, editedGyroAngle);
 		} else {//if we have reached the encoder values
-			//reset encoders and gyro
-			driveSubsystem->ResetRightEncoder();
-			driveSubsystem->ResetLeftEncoder();
-			driveGyro->Reset();
 			//stop the robot
 			driveSubsystem->Arcade(0,0, 0);
 			//wait
 			Wait(WAIT_TIME);
+			//reset encoders and gyro
 			driveSubsystem->ResetRightEncoder();
 			driveSubsystem->ResetLeftEncoder();
+			driveGyro->Reset();
 			//go on to the next step
 			autoStep = DRIVE_BACKWARD;
 		}
