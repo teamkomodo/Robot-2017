@@ -6,7 +6,6 @@
 
 #include "CommandBase.h"
 
-#include "Commands/Autonomous.h"
 #include "Commands/TeleopControl.h"
 
 #include "Subsystems/Lift.h"
@@ -43,7 +42,7 @@ public:
 	void TestPeriodic();
 
 private:
-	Autonomous autonomousGroup;
+
 };
 
 
