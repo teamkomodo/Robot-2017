@@ -10,14 +10,14 @@ private:
 	bool isDone = false;
 	//distances are now in definitions.h
 
-	int autoStep;
 	int editedGyroAngle;
-	int autoPosition;
+	double inches;
 
 	Drive* driveSubsystem;
 	ADXRS450_Gyro* driveGyro;
+
 public:
-	DriveForwardDistance();
+	DriveForwardDistance(double inches);
 	void Initialize();
 	void Execute();
 	bool IsFinished();

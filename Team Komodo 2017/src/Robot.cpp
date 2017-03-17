@@ -6,17 +6,19 @@
 
 #include "CommandBase.h"
 
-#include "Commands/TeleopControl.h"
-
 #include "Subsystems/Lift.h"
 #include "Subsystems/Drive.h"
+
 #include "Commands/TeleopControl.h"
 #include "Commands/HopperWithGamepad.h"
 #include "Commands/LiftWithGamepad.h"
 #include "Commands/ResetHopper.h"
-
 #include "Commands/ConveyorButtonControl.h"
 #include "Commands/DriveForwardDistance.h"
+
+#include "Commands/AutonomousMiddle.h"
+#include "Commands/AutonomousLeft.h"
+#include "Commands/AutonomousRight.h"
 
 
 /**
@@ -42,6 +44,10 @@ public:
 	void TestPeriodic();
 
 private:
+	CommandGroup* autonomousCommandLeft;
+	CommandGroup* autonomousCommandRight;
+	CommandGroup* autonomousCommandMiddle;
+	CommandGroup* autonomousCommand;
 
 };
 
@@ -52,11 +58,15 @@ private:
  * I'm going to add the camera to see if it will cause the code to fail
  */
 void Robot::RobotInit() {
+	autonomousCommandLeft = new AutonomousLeft();
+	autonomousCommandRight = new AutonomousRight();
+	autonomousCommandMiddle = new AutonomousMiddle();
+
 	SmartDashboard::PutNumber("gyroDriftValue", 0.035);
 	SmartDashboard::PutNumber("gyroRushSpeed", 30);
 	SmartDashboard::PutNumber("gyroScaleFactor", 0.11);
 	SmartDashboard::PutNumber("autonomousDistance", 66);
-	SmartDashboard::PutNumber("autonomousPosition (1=left 2=center 3=right", CENTER_POSITION);
+	SmartDashboard::PutNumber("autonomousPosition (1=left 2=center 3=right)", 2);
 //	Start camera streaming
 	cs::UsbCamera camera = CameraServer::GetInstance()->StartAutomaticCapture();
 //	make sure the resolution is high enough *this has not been tested
@@ -85,9 +95,21 @@ void Robot::DisabledPeriodic() {
  *    Thus we don't need to stop the commands before autonomous.
  */
 void Robot::AutonomousInit() {
+	int autoPosition = SmartDashboard::GetNumber("autonomousPosition (1=left 2=center 3=right)", 2);
+	switch(autoPosition){
+	case 1:
+		autonomousCommand = autonomousCommandLeft;
+	break;
+	case 2:
+	default:
+		autonomousCommand = autonomousCommandMiddle;
+	break;
+	case 3:
+		autonomousCommand = autonomousCommandRight;
+	break;
+	}
 	Scheduler::GetInstance()->RemoveAll();
-	Scheduler::GetInstance()->AddCommand(new DriveForwardDistance);
-	Scheduler::GetInstance()->AddCommand(new ResetHopper);
+	autonomousCommand->Start();
 	std::cout << "Starting Autonomous" << std::endl;
 }
 

@@ -1,6 +1,7 @@
 #include "TeleopControl.h"
 #include "../Subsystems/Drive.h"
 #include "../CommandBase.h"
+#include "definitions.h"
 
 
 TeleopControl::TeleopControl() : CommandBase("TeleopControl") {

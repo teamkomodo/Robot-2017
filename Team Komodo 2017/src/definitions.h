@@ -49,19 +49,6 @@
 
 #define HOPPER_LIMIT_SWITCH_CHANNEL	3
 
-//------------------autonomous steps------------------//
-#define DRIVE_FORWARD_BEFORE_TURN	1
-#define TURN_LEFT					2
-#define TURN_RIGHT					3
-#define DRIVE_FORWARD_AFTER_TURN	4
-#define DRIVE_BACKWARD				5
-#define STOP						6
-
-//------------------autonomous positions------------------//
-#define LEFT_POSITION				1
-#define CENTER_POSITION				2
-#define RIGHT_POSITION				3
-
 //------------------gyro drive constants------------------//
 #define JOYSTICK_STANDARD_DRIFT     .25
 #define GYRO_SCALE_FACTOR 			0.1	//was .09
@@ -69,7 +56,7 @@
 #define GYRO_RUSH_SPEED				30
 
 //------------------autonomous distances------------------//
-#define DISTANCE_BEFORE_TURN		150//in inches, originally 100
+#define DISTANCE_BEFORE_TURN		75//in inches, originally 70
 #define DISTANCE_REVERSE			20//in inches, originally 20
 #define DISTANCE_AFTER_TURN			20//in inches, this is a guess, will need to be changed
 #define TURN_DEGREES				60//this is it
