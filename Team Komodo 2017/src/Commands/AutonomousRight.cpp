@@ -2,15 +2,15 @@
 #include "WPIlib.h"
 #include "definitions.h"
 #include "DriveForwardDistance.h"
-#include "TurnLeftDegrees.h"
+#include "TurnRightDegrees.h"
 
 AutonomousRight::AutonomousRight() {
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
 	//      AddSequential(new Command2());
-	AddSequential(new DriveForwardDistance(DISTANCE_BEFORE_TURN));
-	AddSequential(new TurnLeftDegrees(60));
-	AddSequential(new DriveForwardDistance(DISTANCE_AFTER_TURN));
+	AddSequential(new DriveForwardDistance(DISTANCE_BEFORE_TURN));//69
+	AddSequential(new TurnRightDegrees(60));
+	AddSequential(new DriveForwardDistance(DISTANCE_AFTER_TURN));//56
 	// these will run in order.
 
 	// To run multiple commands at the same time,

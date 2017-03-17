@@ -2,14 +2,14 @@
 #include "WPIlib.h"
 #include "definitions.h"
 #include "DriveForwardDistance.h"
-#include "TurnRightDegrees.h"
+#include "TurnLeftDegrees.h"
 
 AutonomousLeft::AutonomousLeft() {
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
 	//      AddSequential(new Command2());
-	AddSequential(new DriveForwardDistance(DISTANCE_BEFORE_TURN));
-	AddSequential(new TurnRightDegrees(60));
+	AddSequential(new DriveForwardDistance(DISTANCE_BEFORE_TURN-2));
+	AddSequential(new TurnLeftDegrees(60));
 	AddSequential(new DriveForwardDistance(DISTANCE_AFTER_TURN));
 	// these will run in order.
 

@@ -61,5 +61,5 @@ double TurnRightDegrees::inchesToEncoders(double inches){
 //convert degrees to the encoder value that the motors need to rotate
 //(in opposite directions)for the robot to rotate that many degrees
 double TurnRightDegrees::degreesToEncoders(double degrees){
-	return inchesToEncoders((degrees / 360)* M_PI * ROBOT_WIDTH_INCHES);
+	return inchesToEncoders((degrees / 360)* M_PI * ROBOT_WIDTH_INCHES*TURN_CORRECTION);
 }

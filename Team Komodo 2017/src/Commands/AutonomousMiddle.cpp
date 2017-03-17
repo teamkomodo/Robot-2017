@@ -6,7 +6,7 @@
 AutonomousMiddle::AutonomousMiddle() {
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
-	AddSequential(new DriveForwardDistance(DISTANCE_BEFORE_TURN));
+	AddSequential(new DriveForwardDistance(DISTANCE));
 	// these will run in order.
 
 	// To run multiple commands at the same time,

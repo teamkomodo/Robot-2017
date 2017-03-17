@@ -56,14 +56,16 @@
 #define GYRO_RUSH_SPEED				30
 
 //------------------autonomous distances------------------//
-#define DISTANCE_BEFORE_TURN		75//in inches, originally 70
-#define DISTANCE_REVERSE			20//in inches, originally 20
-#define DISTANCE_AFTER_TURN			20//in inches, this is a guess, will need to be changed
-#define TURN_DEGREES				60//this is it
+#define DISTANCE					75//inches to peg in center position
+#define DISTANCE_BEFORE_TURN		80//inches before turn in left and right position
+#define DISTANCE_REVERSE			20//inches to back up
+#define DISTANCE_AFTER_TURN			41//inches after turn in left and right position
+#define TURN_DEGREES				60//degrees to turn in left and right position
 #define WAIT_TIME					3//in seconds, time to wait before backing away from peg
 
 //------------------other constants------------------//
 #define ENCODER_VALUES_PER_INCH		329.083//experimentally confirmed
+#define TURN_CORRECTION				.6//was .67
 #define ROBOT_WIDTH_INCHES			23//confirmed
 #define HOPPER_MAXIMUM_ENCODER		16000//experimentally confirmed
 #define DRIVE_MODE					2//1 = tank, 2 = arcade 3 = split arcade
