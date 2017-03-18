@@ -10,7 +10,7 @@ AutonomousRight::AutonomousRight() {
 	//      AddSequential(new Command2());
 	AddSequential(new DriveForwardDistance(DISTANCE_BEFORE_TURN));//69
 	AddSequential(new TurnRightDegrees(60));
-	AddSequential(new DriveForwardDistance(DISTANCE_AFTER_TURN));//56
+	AddSequential(new DriveForwardDistance(DISTANCE_AFTER_TURN+6));//56
 	// these will run in order.
 
 	// To run multiple commands at the same time,

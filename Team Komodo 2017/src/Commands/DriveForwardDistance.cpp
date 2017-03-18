@@ -28,7 +28,7 @@ void DriveForwardDistance::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void DriveForwardDistance::Execute() {
 	//gyro drive
-	if (fabs(driveGyro->GetRate()) > 0.04 ) {	//works well at .04
+	if (fabs(driveGyro->GetRate()) > 0.025 ) {	//works well at .04
 		editedGyroAngle = driveGyro->GetAngle();
 	}else{
 		driveGyro->Reset();
@@ -43,7 +43,7 @@ void DriveForwardDistance::Execute() {
 	if (fabs(driveSubsystem->GetLeftEncoderValue()) < inchesToEncoders(inches)
 				|| fabs(driveSubsystem->GetRightEncoderValue()) < inchesToEncoders(inches)){
 		//drive forward
-		driveSubsystem->Arcade(.75, 0.0, editedGyroAngle);	//was .75
+		driveSubsystem->Arcade(.67, 0.0, editedGyroAngle);	//was .75
 	} else {//if the encoders have reached the values
 		//stop the robot
 		driveSubsystem->Arcade(0,0, 0);
