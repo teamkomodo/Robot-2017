@@ -62,6 +62,7 @@
 #define DISTANCE_AFTER_TURN			25//inches after turn in left and right position
 #define TURN_DEGREES				60//degrees to turn in left and right position
 #define WAIT_TIME					3//in seconds, time to wait before backing away from peg
+#define AUTO_POSITION				2//1=left, 2=center, 3=right
 
 //------------------other constants------------------//
 #define ENCODER_VALUES_PER_INCH		329.083//experimentally confirmed

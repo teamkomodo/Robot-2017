@@ -66,7 +66,7 @@ void Robot::RobotInit() {
 	SmartDashboard::PutNumber("gyroRushSpeed", 30);
 	SmartDashboard::PutNumber("gyroScaleFactor", 0.11);
 	SmartDashboard::PutNumber("autonomousDistance", 66);
-	SmartDashboard::PutNumber("autonomousPosition (1=left 2=center 3=right)", 2);
+	//SmartDashboard::PutNumber("autonomousPosition (1=left 2=center 3=right)", 2);
 //	Start camera streaming
 	cs::UsbCamera camera = CameraServer::GetInstance()->StartAutomaticCapture();
 //	make sure the resolution is high enough *this has not been tested
@@ -95,7 +95,7 @@ void Robot::DisabledPeriodic() {
  *    Thus we don't need to stop the commands before autonomous.
  */
 void Robot::AutonomousInit() {
-	int autoPosition = SmartDashboard::GetNumber("autonomousPosition (1=left 2=center 3=right)", 2);
+	int autoPosition = AUTO_POSITION;//SmartDashboard::GetNumber("autonomousPosition (1=left 2=center 3=right)", 2);
 	switch(autoPosition){
 	case 1:
 		autonomousCommand = autonomousCommandLeft;
