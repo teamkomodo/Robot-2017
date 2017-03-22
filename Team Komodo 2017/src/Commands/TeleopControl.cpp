@@ -87,6 +87,7 @@ void TeleopControl::Execute(){
 	SmartDashboard::PutNumber("Left Encoder Value", driveSubsystem->GetLeftEncoderValue());
 	SmartDashboard::PutNumber("Right Encoder Value", driveSubsystem->GetRightEncoderValue());
 	SmartDashboard::PutNumber("Gyro Rate", driveGyro->GetRate());
+	SmartDashboard::PutNumber("Gyro Angle", driveGyro->GetAngle());
 	CommandBase::retrieveOperatorInterface()->updateButtonStateLeftJoystick();//see OI.cpp
 }
 

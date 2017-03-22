@@ -3,14 +3,18 @@
 #include "definitions.h"
 #include "DriveForwardDistance.h"
 #include "TurnLeftDegrees.h"
+#include "ReverseDistance.h"
+#include "WaitForDuration.h"
 
 AutonomousLeft::AutonomousLeft() {
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
 	//      AddSequential(new Command2());
-	AddSequential(new DriveForwardDistance(DISTANCE_BEFORE_TURN+6));
+	AddSequential(new DriveForwardDistance(DISTANCE_BEFORE_TURN+2));
 	AddSequential(new TurnLeftDegrees(60));
 	AddSequential(new DriveForwardDistance(DISTANCE_AFTER_TURN-6));
+	AddSequential(new WaitForDuration(3));
+	AddSequential(new ReverseDistance(10));
 	// these will run in order.
 
 	// To run multiple commands at the same time,

@@ -3,6 +3,8 @@
 #include "definitions.h"
 #include "DriveForwardDistance.h"
 #include "TurnRightDegrees.h"
+#include "ReverseDistance.h"
+#include "WaitForDuration.h"
 
 AutonomousRight::AutonomousRight() {
 	// Add Commands here:
@@ -11,6 +13,8 @@ AutonomousRight::AutonomousRight() {
 	AddSequential(new DriveForwardDistance(DISTANCE_BEFORE_TURN));//69
 	AddSequential(new TurnRightDegrees(60));
 	AddSequential(new DriveForwardDistance(DISTANCE_AFTER_TURN+6));//56
+	AddSequential(new WaitForDuration(3));
+	AddSequential(new ReverseDistance(10));
 	// these will run in order.
 
 	// To run multiple commands at the same time,

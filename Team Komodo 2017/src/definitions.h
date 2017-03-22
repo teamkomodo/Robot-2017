@@ -52,12 +52,12 @@
 //------------------gyro drive constants------------------//
 #define JOYSTICK_STANDARD_DRIFT     .25
 #define GYRO_SCALE_FACTOR 			0.1	//was .09
-#define GYRO_DRIFT_VALUE            0.01
+#define GYRO_DRIFT_VALUE            0.04//was .04
 #define GYRO_RUSH_SPEED				30
 
 //------------------autonomous distances------------------//
 #define DISTANCE					75//inches to peg in center position
-#define DISTANCE_BEFORE_TURN		80//inches before turn in left and right position
+#define DISTANCE_BEFORE_TURN		82//inches before turn in left and right position
 #define DISTANCE_REVERSE			20//inches to back up
 #define DISTANCE_AFTER_TURN			25//inches after turn in left and right position
 #define TURN_DEGREES				60//degrees to turn in left and right position

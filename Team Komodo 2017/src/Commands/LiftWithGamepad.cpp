@@ -17,12 +17,7 @@ void LiftWithGamepad::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void LiftWithGamepad::Execute() {
-	// Set the lift motor speed to the y-axis of the right joystick
-	//if(lifterSubsystem->isLimitSwitchPressed()){//if the limit switch is pressed, stop the motor
-	//	lifterSubsystem->setSpeed(0);
-	//}else{
-		lifterSubsystem->setSpeed(gamePad->GetRawAxis(DOLPHIN_LSTICK_Y));//otherwise control it with the joystick
-	//}
+		lifterSubsystem->setSpeed(fabs(gamePad->GetRawAxis(DOLPHIN_LSTICK_Y)));//set the speed to absolute value of the joystick position
 }
 
 // Make this return true when this Command no longer needs to run execute()

@@ -2,11 +2,15 @@
 #include "DriveForwardDistance.h"
 #include "WPIlib.h"
 #include "definitions.h"
+#include "ReverseDistance.h"
+#include "WaitForDuration.h"
 
 AutonomousMiddle::AutonomousMiddle() {
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
 	AddSequential(new DriveForwardDistance(DISTANCE));
+	AddSequential(new WaitForDuration(3));
+	AddSequential(new ReverseDistance(10));
 	// these will run in order.
 
 	// To run multiple commands at the same time,
